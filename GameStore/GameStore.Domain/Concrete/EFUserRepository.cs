@@ -5,32 +5,32 @@ using GameStore.Domain.Entities;
 
 namespace GameStore.Domain.Concrete
 {
-    public class EFProductRepository : IProductRepository
+    public class EFUserRepository : IUserRepository
     {
         private EFDbContext context = new EFDbContext();
 
-        public IEnumerable<Product> Products
+        public IEnumerable<User> Users
         {
             get
             {
-                return context.Products;
+                return context.Users;
             }
         }
 
-        public Product Find(int? id)
+        public User Find(int? id)
         {
-            return context.Products.Find(id);
+            return context.Users.Find(id);
         }
 
-        public void Add(Product product)
+        public void Add(User user)
         {
-            context.Products.Add(product);
+            context.Users.Add(user);
             context.SaveChanges();
         }
 
-        public void Save(Product product)
+        public void Save(User user)
         {
-            context.Entry(product).State = EntityState.Modified;
+            context.Entry(user).State = EntityState.Modified;
             context.SaveChanges();
         }
     }

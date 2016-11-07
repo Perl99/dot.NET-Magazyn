@@ -5,12 +5,18 @@
     ViewBag.Title = "Produkty";
 }
 
+<h2>Lista produktów</h2>
+
 
 @foreach (var p in Model)
 {
     <div>
         <h3>@p.Name --- @p.Price.ToString("c")</h3>
         @p.Description
+        <br/>
+        @Html.ActionLink("Szczegóły", "Details", new { id = p.ProductId })
     </div>
 }
 
+<hr/>
+@Html.ActionLink("Dodaj", "Add")
