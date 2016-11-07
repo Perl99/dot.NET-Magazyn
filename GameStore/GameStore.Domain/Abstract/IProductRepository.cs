@@ -6,5 +6,7 @@ namespace GameStore.Domain.Abstract
     public interface IProductRepository
     {
         IEnumerable<Product> Products { get; }
+        Product Find(int? id);
+        void Save(Product product);
     }
 }
