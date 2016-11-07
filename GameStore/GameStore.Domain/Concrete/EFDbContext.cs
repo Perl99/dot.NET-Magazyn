@@ -5,6 +5,12 @@ namespace GameStore.Domain.Concrete
 {
     public class EFDbContext : DbContext
     {
+
+        public EFDbContext()
+        {
+            Database.SetInitializer<EFDbContext>(null);
+        }
+
         public DbSet<Product> Products { get; set; }
 
         public DbSet<User> Users { get; set; }
