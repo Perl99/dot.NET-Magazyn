@@ -38,6 +38,12 @@ namespace GameStore.WebUI.Controllers
             return View(product);
         }
 
+        // GET: /Product/Add
+        public ActionResult Add()
+        {
+            return View("Edit", new Product());
+        }
+
         // GET: /Product/Edit/:id
         public ActionResult Edit(int? id)
         {
@@ -59,11 +65,18 @@ namespace GameStore.WebUI.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductId,Name,Description,Price,Category")] Product product)
+        public ActionResult DoEdit([Bind(Include = "ProductId,Name,Description,Price,Category")] Product product)
         {
             if (ModelState.IsValid)
             {
-                repository.Save(product);
+                if (product.ProductId <= 0)
+                {
+                    repository.Add(product);
+                }
+                else
+                {
+                    repository.Save(product);
+                }
                 return RedirectToAction("List");
             }
             return View(product);

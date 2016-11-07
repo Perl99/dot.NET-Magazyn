@@ -10,13 +10,13 @@
 }
 
 <h2>Edycja</h2>
-@using (Html.BeginForm())
+@using (Html.BeginForm("DoEdit", "Product"))
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal">
         <h4>Produkt</h4>
         <hr />
-        @Html.ValidationSummary(true)
+        @Html.ValidationSummary(false)
         @Html.HiddenFor(model => model.ProductId)
 
         <div class="form-group">
@@ -57,7 +57,7 @@
     </div>
 }
 <div>
-    @Html.ActionLink("Back to List", "List")
+    @Html.ActionLink("Wróć do listy", "List")
 </div>
 
 @*

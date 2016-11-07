@@ -7,6 +7,7 @@ namespace GameStore.Domain.Abstract
     {
         IEnumerable<Product> Products { get; }
         Product Find(int? id);
+        void Add(Product product);
         void Save(Product product);
     }
 }

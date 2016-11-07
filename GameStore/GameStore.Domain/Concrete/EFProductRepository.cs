@@ -22,6 +22,12 @@ namespace GameStore.Domain.Concrete
             return context.Products.Find(id);
         }
 
+        public void Add(Product product)
+        {
+            context.Products.Add(product);
+            context.SaveChanges();
+        }
+
         public void Save(Product product)
         {
             context.Entry(product).State = EntityState.Modified;
