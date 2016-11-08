@@ -1,4 +1,4 @@
-﻿@using GameStore.Domain.Entities
+﻿@using GameStore.Domain.Entities;
 @model IEnumerable<Product>
 
 @{
@@ -6,6 +6,18 @@
 }
 
 <h2>Lista produktów</h2>
+
+@{
+    var user = @Session["user"] as User;
+}
+
+@if (user != null)
+{
+    <h3>
+        Zalogowany jako <b>@user.Name @user.Surname @user.Login</b>
+    </h3>
+    @Html.ActionLink("Logout", "Logout", "Login");
+}
 
 
 @foreach (var p in Model)

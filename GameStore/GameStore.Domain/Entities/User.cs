@@ -19,5 +19,11 @@ namespace GameStore.Domain.Entities
 
         [DisplayName("Nazwisko")]
         public string Surname { get; set; }
+
+        [DisplayName("Login")]
+        public string Login { get; set; }
+
+        [DisplayName("Password")]
+        public string Password { get; set; }
     }
 }
