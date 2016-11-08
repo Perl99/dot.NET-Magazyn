@@ -21,9 +21,12 @@ namespace GameStore.Domain.Entities
         public string Surname { get; set; }
 
         [DisplayName("Login")]
+        [Required(ErrorMessage = "Login is required")]
         public string Login { get; set; }
 
         [DisplayName("Password")]
+        [Required(ErrorMessage = "Password is required")]
+       // [DataType(DataType.Password)]
         public string Password { get; set; }
     }
 }

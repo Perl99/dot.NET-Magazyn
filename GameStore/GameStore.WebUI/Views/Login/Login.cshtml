@@ -1,4 +1,4 @@
-﻿
+﻿@model GameStore.Domain.Entities.User
 @{
     Layout = null;
 }
@@ -13,11 +13,24 @@
 <body>
     @using (Html.BeginForm())
     {
-        <div>@Html.Label("Login name")</div>
-        <div>@Html.TextBox("name")</div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Login, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Login)
+                @Html.ValidationMessageFor(model => model.Login)
+            </div>
+        </div>
         <div>@Html.Label("Password")</div>
         <div>@Html.Password("password")</div>
-        <input type="submit" value="Login"/>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Login" class="btn btn-default"/>
+            </div>
+        </div>
+
+        <div>
+            @Html.ActionLink("Rejestracja", "Register", "Login")
+        </div>
     }
 </body>
 </html>
