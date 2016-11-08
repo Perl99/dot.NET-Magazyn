@@ -81,6 +81,7 @@
     <Compile Include="Abstract\IOfferRepository.cs" />
     <Compile Include="Abstract\IProductRepository.cs" />
     <Compile Include="Abstract\IUserRepository.cs" />
+    <Compile Include="Concrete\DBContextExtensions.cs" />
     <Compile Include="Concrete\EFUserRepository.cs" />
     <Compile Include="Concrete\EFOfferRepository.cs" />
     <Compile Include="Concrete\EFAuctionRepository.cs" />
@@ -91,9 +92,9 @@
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserType.cs" />
-    <Compile Include="Migrations\201611071702505_InitialCreate.cs" />
-    <Compile Include="Migrations\201611071702505_InitialCreate.Designer.cs">
-      <DependentUpon>201611071702505_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201611082150468_Initial.cs" />
+    <Compile Include="Migrations\201611082150468_Initial.Designer.cs">
+      <DependentUpon>201611082150468_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -103,8 +104,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611071702505_InitialCreate.resx">
-      <DependentUpon>201611071702505_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611082150468_Initial.resx">
+      <DependentUpon>201611082150468_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

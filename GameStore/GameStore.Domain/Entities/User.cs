@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,7 +10,7 @@ namespace GameStore.Domain.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int UserId { get; set; }
+        public int Id { get; set; }
 
         [DisplayName("Typ")]
         public bool Type { get; set; }
@@ -28,5 +29,8 @@ namespace GameStore.Domain.Entities
         [Required(ErrorMessage = "Hasło jest wymagane")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        [DisplayName("Aukcje")]
+        public virtual ICollection<Auction> Auction { get; set; } = new List<Auction>();
     }
 }

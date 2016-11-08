@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Web;
+﻿using System.Net;
 using System.Web.Mvc;
 using GameStore.Domain.Abstract;
 using GameStore.Domain.Entities;
@@ -73,7 +69,7 @@ namespace GameStore.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (product.ProductId <= 0)
+                if (product.Id <= 0)
                 {
                     repository.Add(product);
                 }
@@ -83,7 +79,7 @@ namespace GameStore.WebUI.Controllers
                 }
                 return RedirectToAction("List");
             }
-            return View(product);
+            return View("Edit", product);
         }
     }
 }

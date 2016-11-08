@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Lista aukcji";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<GameStore.Domain.Entities.Auction>
+
+<h2>Aukcje</h2>
+
+@Html.ActionLink("Dodaj", "Add", null, new { @class="btn btn-primary" })
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3">
+            @Html.DisplayNameFor(model => model.Id)
+        </div>
+        <div class="col-lg-3">
+            @Html.DisplayNameFor(model => model.Owner)
+        </div>
+        <div class="col-lg-3">
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </div>
+        <div class="col-lg-3">
+            Akcje
+        </div>
+    </div>
+    <div class="row">
+        @foreach (var auction in Model)
+        {
+            <div class="col-lg-3">
+                @auction.Id
+            </div>
+            <div class="col-lg-3">
+                @auction.Owner.Name @auction.Owner.Surname
+            </div>
+            <div class="col-lg-3">
+                @auction.CreationDate
+            </div>
+            <div class="col-lg-3">
+                @Html.ActionLink("Szczegóły", "Details", new { id = auction.Id })
+            </div>
+        }
+    </div>
+</div>

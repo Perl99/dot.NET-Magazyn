@@ -1,3 +1,6 @@
+using System.Data.Entity;
+using GameStore.Domain.Concrete;
+
 [assembly: WebActivator.PreApplicationStartMethod(typeof(GameStore.WebUI.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(GameStore.WebUI.App_Start.NinjectWebCommon), "Stop")]
 

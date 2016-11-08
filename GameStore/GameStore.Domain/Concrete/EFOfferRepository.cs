@@ -7,7 +7,12 @@ namespace GameStore.Domain.Concrete
 {
     public class EFOfferRepository : IOfferRepository
     {
-        private EFDbContext context = new EFDbContext();
+        private EFDbContext context;
+
+        public EFOfferRepository(EFDbContext context)
+        {
+            this.context = context;
+        }
 
         public IEnumerable<Offer> Offers
         {

@@ -7,7 +7,12 @@ namespace GameStore.Domain.Concrete
 {
     public class EFAuctionRepository : IAuctionRepository
     {
-        private EFDbContext context = new EFDbContext();
+        private EFDbContext context;
+
+        public EFAuctionRepository(EFDbContext context)
+        {
+            this.context = context;
+        }
 
         public IEnumerable<Auction> Auctions
         {

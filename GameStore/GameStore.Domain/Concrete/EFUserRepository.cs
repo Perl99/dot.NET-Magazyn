@@ -9,7 +9,12 @@ namespace GameStore.Domain.Concrete
 {
     public class EFUserRepository : IUserRepository
     {
-        private EFDbContext context = new EFDbContext();
+        private EFDbContext context;
+
+        public EFUserRepository(EFDbContext context)
+        {
+            this.context = context;
+        }
 
         public IEnumerable<User> Users
         {
@@ -19,16 +24,9 @@ namespace GameStore.Domain.Concrete
             }
         }
 
-        public User Find(string login, string password)
+        public User Find(int? id)
         {
-            try
-            {
-                return context.Users.Single(u => u.Login == login && u.Password == password);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return context.Users.Find(id);
         }
         public void Add(User user)
         {
@@ -40,6 +38,12 @@ namespace GameStore.Domain.Concrete
         {
             context.Entry(user).State = EntityState.Modified;
             context.SaveChanges();
+        }
+
+        public User FindByLoginAndPassword(string login, string password)
+        {
+            return context.Users
+                .FirstOrDefault(user => user.Login == login && user.Password == password);
         }
     }
 }

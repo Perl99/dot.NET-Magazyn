@@ -1,16 +1,12 @@
 ﻿@model GameStore.Domain.Entities.User
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
+@{
+    ViewBag.Title = "Login";
+}
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Login</title>
-</head>
-<body>
 @Html.ValidationSummary()
 @using (Html.BeginForm())
 {
@@ -33,5 +29,3 @@
         @Html.ActionLink("Rejestracja", "Register")
     </div>
 }
-</body>
-</html>

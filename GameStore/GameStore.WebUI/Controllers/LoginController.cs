@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Security;
+﻿using System.Web.Mvc;
 using GameStore.Domain.Abstract;
-using GameStore.Domain.Concrete;
 using GameStore.Domain.Entities;
-using Ninject;
 
 namespace GameStore.WebUI.Controllers
 {
@@ -31,10 +23,10 @@ namespace GameStore.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var usr = repository.Find(user.Login, user.Password);
+                var usr = repository.FindByLoginAndPassword(user.Login, user.Password);
                 if (usr != null)
                 {
-                    Session["UserId"] = usr.UserId.ToString();
+                    Session["UserId"] = usr.Id.ToString();
                     Session["Login"] = usr.Login.ToString();
                     if (Session["UserID"] != null)
                     {
@@ -42,7 +34,7 @@ namespace GameStore.WebUI.Controllers
                     }
                 }
                 else
-                    ModelState.AddModelError("", "Nie prawidłowe dane");
+                    ModelState.AddModelError("", "Nieprawidłowe dane");
             }
             return View();
         }
@@ -58,11 +50,11 @@ namespace GameStore.WebUI.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register([Bind(Include = "UserId,Type,Name,Surname,Login,Password")] User user)
+        public ActionResult Register([Bind(Include = "Id,Type,Name,Surname,Login,Password")] User user)
         {
             if (ModelState.IsValid)
             {
-                if (user.UserId <= 0)
+                if (user.Id <= 0)
                 {
                     repository.Add(user);
                     return RedirectToAction("Login", "Login");

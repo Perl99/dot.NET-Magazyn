@@ -7,7 +7,12 @@ namespace GameStore.Domain.Concrete
 {
     public class EFProductRepository : IProductRepository
     {
-        private EFDbContext context = new EFDbContext();
+        private EFDbContext context;
+
+        public EFProductRepository(EFDbContext context)
+        {
+            this.context = context;
+        }
 
         public IEnumerable<Product> Products
         {
