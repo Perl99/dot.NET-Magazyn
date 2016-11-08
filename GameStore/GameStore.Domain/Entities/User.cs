@@ -12,12 +12,21 @@ namespace GameStore.Domain.Entities
         public int UserId { get; set; }
 
         [DisplayName("Typ")]
-        public UserType Type { get; set; }
+        public bool Type { get; set; }
 
         [DisplayName("Imię")]
         public string Name { get; set; }
 
         [DisplayName("Nazwisko")]
         public string Surname { get; set; }
+
+        [DisplayName("Login")]
+        [Required(ErrorMessage = "Login jest wymagany")]
+        public string Login { get; set; }
+
+        [DisplayName("Password")]
+        [Required(ErrorMessage = "Hasło jest wymagane")]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
     }
 }

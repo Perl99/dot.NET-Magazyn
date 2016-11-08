@@ -1,11 +1,17 @@
-﻿@using GameStore.Domain.Entities
+﻿@using GameStore.Domain.Entities;
 @model IEnumerable<Product>
 
 @{
     ViewBag.Title = "Produkty";
 }
+@if (@Session["UserId"] != null)
+{
+    <h3>Zalogowany @Session["Login"] @Html.ActionLink("Wyloguj", "Logout", "Login");</h3>
+}
 
 <h2>Lista produktów</h2>
+
+
 
 
 @foreach (var p in Model)

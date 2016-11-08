@@ -19,8 +19,12 @@ namespace GameStore.WebUI.Controllers
             this.repository = productRepository;
         }
 
-        public ViewResult List()
+        public ActionResult List()
         {
+              if(Session["UserId"] == null)
+              {
+                  return RedirectToAction("Login", "Login");
+              }
             return View(repository.Products);
         }
 
