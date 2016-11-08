@@ -16,6 +16,11 @@ namespace GameStore.Domain.Migrations
 
         protected override void Seed(EFDbContext context)
         {
+            context.DeleteAll<Offer>();
+            context.DeleteAll<Auction>();
+            context.DeleteAll<Product>();
+            context.DeleteAll<User>();
+
             var user = new User
             {
                 Name = "Szara",

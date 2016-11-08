@@ -80,8 +80,8 @@ namespace GameStore.Domain.Migrations
         {
             DropForeignKey("dbo.ProductAuctions", "Auction_Id", "dbo.Auctions");
             DropForeignKey("dbo.ProductAuctions", "Product_Id", "dbo.Products");
-            DropForeignKey("dbo.Auctions", "Owner_Id", "dbo.Users");
             DropForeignKey("dbo.Offers", "Owner_Id", "dbo.Users");
+            DropForeignKey("dbo.Auctions", "Owner_Id", "dbo.Users");
             DropForeignKey("dbo.Offers", "Auction_Id", "dbo.Auctions");
             DropIndex("dbo.ProductAuctions", new[] { "Auction_Id" });
             DropIndex("dbo.ProductAuctions", new[] { "Product_Id" });

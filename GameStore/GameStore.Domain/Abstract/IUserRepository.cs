@@ -9,6 +9,7 @@ namespace GameStore.Domain.Abstract
         User Find(int? id);
         void Add(User user);
         void Save(User user);
+        User FindByLoginAndPassword(string login, string password);
     }
 }
 

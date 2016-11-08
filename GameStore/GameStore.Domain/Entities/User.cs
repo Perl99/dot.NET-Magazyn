@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -25,5 +26,8 @@ namespace GameStore.Domain.Entities
 
         [DisplayName("Password")]
         public string Password { get; set; }
+
+        [DisplayName("Aukcje")]
+        public virtual ICollection<Auction> Auction { get; set; } = new List<Auction>();
     }
 }

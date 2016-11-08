@@ -14,11 +14,13 @@ namespace GameStore.WebUI.Controllers
         // GET: Auction
         private IAuctionRepository repository;
         private IProductRepository productRepository;
+        private IUserRepository userRepository;
 
-        public AuctionController(IAuctionRepository auctionRepository, IProductRepository productRepository)
+        public AuctionController(IAuctionRepository auctionRepository, IProductRepository productRepository, IUserRepository userRepository)
         {
             this.repository = auctionRepository;
             this.productRepository = productRepository;
+            this.userRepository = userRepository;
         }
 
         public ActionResult List()
@@ -67,12 +69,15 @@ namespace GameStore.WebUI.Controllers
         // POST: /Product/Edit/:id
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DoEdit([Bind(Include = "Auction.AuctionId,Auction.Description,SelectedProductIds")] AuctionViewModel auctionViewModel)
+        public ActionResult DoEdit([Bind(Include = "Auction,SelectedProductIds")] AuctionViewModel auctionViewModel)
         {
             if (!ModelState.IsValid)
                 return View("Edit", new AuctionViewModel { Products = GetMultiselect(auctionViewModel.SelectedProductIds) });
 
-            auctionViewModel.Auction.Owner = Session["user"] as User;
+            User currentUser = Session["user"] as User;
+            if (currentUser == null) throw new Exception("Current user is null");
+
+            auctionViewModel.Auction.Owner = userRepository.Find(currentUser.Id);
 
             foreach (var product in auctionViewModel.SelectedProductIds.Select(productId => productRepository.Find(productId)))
             {
@@ -102,9 +107,9 @@ namespace GameStore.WebUI.Controllers
         private MultiSelectList GetMultiselect(List<int> ids = null)
         {
             if (ids == null)
-                return new MultiSelectList(productRepository.Products.OrderBy(i => i.Name), "ProductId", "Name");
+                return new MultiSelectList(productRepository.Products.OrderBy(i => i.Name), "Id", "Name");
 
-            return new MultiSelectList(productRepository.Products.OrderBy(i => i.Name), "ProductId", "Name", ids);
+            return new MultiSelectList(productRepository.Products.OrderBy(i => i.Name), "Id", "Name", ids);
         }
 
         private List<int> GetSelectedIds(Auction auction)

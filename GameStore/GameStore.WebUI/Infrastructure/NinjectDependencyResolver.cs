@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Web.Mvc;
 using Ninject;
 using GameStore.Domain.Abstract;
@@ -33,6 +34,7 @@ namespace GameStore.WebUI.Infrastructure
             kernel.Bind<IUserRepository>().To<EFUserRepository>();
             kernel.Bind<IAuctionRepository>().To<EFAuctionRepository>();
             kernel.Bind<IOfferRepository>().To<EFOfferRepository>();
+            kernel.Bind<EFDbContext>().To<EFDbContext>().InSingletonScope();
         }
     }
 }
