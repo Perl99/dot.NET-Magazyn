@@ -29,7 +29,7 @@ namespace GameStore.WebUI.Controllers
         [HttpPost]
         public ActionResult Login(User user)
         {
-            var usr = repository.Users.Single(u => u.Login == user.Login && u.Password == user.Password);
+            var usr = repository.Find(user.Login , user.Password);
             if (usr != null)
             {
                 Session["UserId"] = usr.UserId.ToString();
@@ -51,7 +51,10 @@ namespace GameStore.WebUI.Controllers
             Session.Clear();
             return RedirectToAction("List", "Product");
         }
-
+        public ActionResult Register()
+        {
+            return View();
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Register([Bind(Include = "UserId,Type,Name,Surname,Login,Password")] User user)
@@ -61,10 +64,6 @@ namespace GameStore.WebUI.Controllers
                 if (user.UserId <= 0)
                 {
                     repository.Add(user);
-                }
-                else
-                {
-                    repository.Save(user);
                 }
             }
             return View();

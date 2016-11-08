@@ -21,10 +21,10 @@ namespace GameStore.WebUI.Controllers
 
         public ActionResult List()
         {
-            if (Session["user"] == null)
-            {
-                return RedirectToAction("Login", "Login");
-            }
+              if(Session["UserId"] == null)
+              {
+                  return RedirectToAction("Login", "Login");
+              }
             return View(repository.Products);
         }
 

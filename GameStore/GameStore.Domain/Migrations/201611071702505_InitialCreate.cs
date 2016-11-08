@@ -18,12 +18,24 @@ namespace GameStore.Domain.Migrations
                         Category = c.String(),
                     })
                 .PrimaryKey(t => t.ProductId);
-            
+            CreateTable(
+                "dbo.Users",
+                c => new
+                {
+                    UserId = c.Int(nullable: false, identity: true),
+                    Type = c.Boolean(),
+                    Name = c.String(),
+                    Surname = c.String(),
+                    Login = c.String(),
+                    Password = c.String(),
+                })
+                .PrimaryKey(t => t.UserId);
         }
         
         public override void Down()
         {
             DropTable("dbo.Products");
+            DropTable("dbo.Users");
         }
     }
 }

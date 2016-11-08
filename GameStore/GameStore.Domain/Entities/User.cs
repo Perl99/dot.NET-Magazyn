@@ -12,7 +12,7 @@ namespace GameStore.Domain.Entities
         public int UserId { get; set; }
 
         [DisplayName("Typ")]
-        public UserType Type { get; set; }
+        public bool Type { get; set; }
 
         [DisplayName("Imię")]
         public string Name { get; set; }
@@ -26,7 +26,7 @@ namespace GameStore.Domain.Entities
 
         [DisplayName("Password")]
         [Required(ErrorMessage = "Password is required")]
-       // [DataType(DataType.Password)]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
     }
 }

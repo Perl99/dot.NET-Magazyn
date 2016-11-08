@@ -4,20 +4,14 @@
 @{
     ViewBag.Title = "Produkty";
 }
+@if (@Session["UserId"] != null)
+{
+    <h3>Zalogowany @Html.ActionLink("Wyloguj", "Logout", "Login");</h3>
+}
 
 <h2>Lista produktów</h2>
 
-@{
-    var user = @Session["user"] as User;
-}
 
-@if (user != null)
-{
-    <h3>
-        Zalogowany jako <b>@user.Name @user.Surname @user.Login</b>
-    </h3>
-    @Html.ActionLink("Logout", "Logout", "Login");
-}
 
 
 @foreach (var p in Model)

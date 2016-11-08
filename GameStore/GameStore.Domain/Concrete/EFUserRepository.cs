@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using GameStore.Domain.Abstract;
 using GameStore.Domain.Entities;
 
@@ -17,11 +19,17 @@ namespace GameStore.Domain.Concrete
             }
         }
 
-        public User Find(int? id)
+        public User Find(string login, string password)
         {
-            return context.Users.Find(id);
+            try
+            {
+                return context.Users.Single(u => u.Login == login && u.Password == password);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
-
         public void Add(User user)
         {
             context.Users.Add(user);
