@@ -21,11 +21,11 @@ namespace GameStore.Domain.Entities
         public string Surname { get; set; }
 
         [DisplayName("Login")]
-        [Required(ErrorMessage = "Login is required")]
+        [Required(ErrorMessage = "Login jest wymagany")]
         public string Login { get; set; }
 
         [DisplayName("Password")]
-        [Required(ErrorMessage = "Password is required")]
+        [Required(ErrorMessage = "Hasło jest wymagane")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
     }

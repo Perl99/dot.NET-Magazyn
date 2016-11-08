@@ -6,7 +6,7 @@
 }
 @if (@Session["UserId"] != null)
 {
-    <h3>Zalogowany @Html.ActionLink("Wyloguj", "Logout", "Login");</h3>
+    <h3>Zalogowany @Session["Login"] @Html.ActionLink("Wyloguj", "Logout", "Login");</h3>
 }
 
 <h2>Lista produktów</h2>

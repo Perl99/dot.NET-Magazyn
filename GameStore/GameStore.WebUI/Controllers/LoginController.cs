@@ -29,19 +29,20 @@ namespace GameStore.WebUI.Controllers
         [HttpPost]
         public ActionResult Login(User user)
         {
-            var usr = repository.Find(user.Login , user.Password);
-            if (usr != null)
+            if (ModelState.IsValid)
             {
-                Session["UserId"] = usr.UserId.ToString();
-                Session["Login"] = usr.Login.ToString();
-                if (Session["UserID"] != null)
+                var usr = repository.Find(user.Login, user.Password);
+                if (usr != null)
                 {
-                    return RedirectToAction("List", "Product");
+                    Session["UserId"] = usr.UserId.ToString();
+                    Session["Login"] = usr.Login.ToString();
+                    if (Session["UserID"] != null)
+                    {
+                        return RedirectToAction("List", "Product");
+                    }
                 }
-            }
-            else
-            {
-                ModelState.AddModelError("", "Login lub hasło nie prawidłowe");
+                else
+                    ModelState.AddModelError("", "Nie prawidłowe dane");
             }
             return View();
         }
@@ -64,6 +65,7 @@ namespace GameStore.WebUI.Controllers
                 if (user.UserId <= 0)
                 {
                     repository.Add(user);
+                    return RedirectToAction("Login", "Login");
                 }
             }
             return View();
