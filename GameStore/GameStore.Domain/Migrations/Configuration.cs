@@ -1,32 +1,43 @@
+using System;
+using System.Data.Entity.Migrations;
+using GameStore.Domain.Concrete;
+using GameStore.Domain.Entities;
+
 namespace GameStore.Domain.Migrations
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
-    internal sealed class Configuration : DbMigrationsConfiguration<GameStore.Domain.Concrete.EFDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<EFDbContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
             ContextKey = "GameStore.Domain.Concrete.EFDbContext";
         }
 
-        protected override void Seed(GameStore.Domain.Concrete.EFDbContext context)
+        protected override void Seed(EFDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            var user = new User
+            {
+                Name = "Szara",
+                Surname = "Eminencja",
+                Login = "admin",
+                Password = "admin",
+                Type = UserType.Client
+            };
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            context.Users.Add(user);
+
+            var product = new Product
+            {
+                Name = "Produkt 1",
+                Description = "Opis produktu 1",
+                Category = "Fajowe",
+                Price = Convert.ToDecimal(100.99)
+            };
+
+            context.Users.Add(user);
+            context.Products.Add(product);
+
+            base.Seed(context);
         }
     }
 }

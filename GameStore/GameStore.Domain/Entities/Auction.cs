@@ -18,8 +18,8 @@ namespace GameStore.Domain.Entities
         [DisplayName("Właściciel")]
         public User Owner { get; set; }
 
-        [DisplayName("Oferta")]
-        public Offer Offer { get; set; }
+        [DisplayName("Oferty")]
+        public IEnumerable<Offer> Offers { get; set; }
 
         [Display(Name = "Data utworzenia")]
         [DataType(DataType.Date)]

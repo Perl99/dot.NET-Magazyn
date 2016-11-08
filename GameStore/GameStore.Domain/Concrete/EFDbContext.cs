@@ -1,5 +1,6 @@
 ﻿using GameStore.Domain.Entities;
 using System.Data.Entity;
+using GameStore.Domain.Migrations;
 
 namespace GameStore.Domain.Concrete
 {
@@ -8,7 +9,7 @@ namespace GameStore.Domain.Concrete
 
         public EFDbContext()
         {
-            Database.SetInitializer<EFDbContext>(null);
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<EFDbContext, Configuration>());
         }
 
         public DbSet<Product> Products { get; set; }
