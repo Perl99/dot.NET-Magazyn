@@ -19,5 +19,7 @@ namespace GameStore.Domain.Concrete
         public DbSet<Offer> Offers { get; set; }
 
         public DbSet<Auction> Auctions { get; set; }
+
+        
     }
 }

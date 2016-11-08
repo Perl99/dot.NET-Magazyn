@@ -13,6 +13,12 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Model.Description
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.CreationDate)
         </dt>
         <dd>
@@ -22,12 +28,13 @@
             @Html.DisplayNameFor(model => model.Owner)
         </dt>
         <dd>
-            @Model.Owner
+            @Model.Owner.Name @Model.Owner.Surname
         </dd>
     </dl>
 </div>
 
 <div class="container">
+    <h3>Produkty w ramach aukcji</h3>
     <div class="row">
         <div class="col-lg-4">
             @Html.DisplayNameFor(auction => auction.Products.First().Name)
@@ -63,6 +70,7 @@
 </div>
 
 <div class="container">
+    <h3>Oferty dostawców</h3>
     <div class="row">
         <div class="col-lg-4">
             @Html.DisplayNameFor(auction => auction.Offers.First().Price)
@@ -89,12 +97,12 @@
             <div class="col-lg-4">
                 @offer.Accepted.ToString()
             </div>
-            <div class="col-lg-4">
-                @* @Html.ActionLink("Szczegóły", "Details", "Offer", new { id = offer.OfferId }, null) *@
-            </div>
+@*            <div class="col-lg-4">*@
+@*                @Html.ActionLink("Szczegóły", "Details", "Offer", new { id = offer.OfferId }, null)*@
+@*            </div>*@
         }
     </div>
 </div>
 
 
-@* @Html.ActionLink("Szczegóły", "Add", "Offer", null, new { @class = "btn btn-primary" }) *@
+@Html.ActionLink("Złóż ofertę", "Add", "Offer", null, new { @class = "btn btn-primary" })

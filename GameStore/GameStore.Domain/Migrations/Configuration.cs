@@ -9,6 +9,7 @@ namespace GameStore.Domain.Migrations
     {
         public Configuration()
         {
+            AutomaticMigrationDataLossAllowed = true;
             AutomaticMigrationsEnabled = true;
             ContextKey = "GameStore.Domain.Concrete.EFDbContext";
         }

@@ -9,7 +9,7 @@ namespace GameStore.Domain.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int UserId { get; set; }
+        public int Id { get; set; }
 
         [DisplayName("Typ")]
         public UserType Type { get; set; }

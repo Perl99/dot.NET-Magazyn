@@ -10,16 +10,20 @@ namespace GameStore.Domain.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int AuctionId { get; set; }
+        public int Id { get; set; }
 
         [DisplayName("Produkty")]
-        public IEnumerable<Product> Products { get; set; }
+        public ICollection<Product> Products { get; set; } = new List<Product>();
+
+        [Required]
+        [DisplayName("Opis")]
+        public string Description { get; set; }
 
         [DisplayName("Właściciel")]
         public User Owner { get; set; }
 
         [DisplayName("Oferty")]
-        public IEnumerable<Offer> Offers { get; set; }
+        public ICollection<Offer> Offers { get; set; } = new List<Offer>();
 
         [Display(Name = "Data utworzenia")]
         [DataType(DataType.Date)]

@@ -13,7 +13,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-3">
-            @Html.DisplayNameFor(model => model.AuctionId)
+            @Html.DisplayNameFor(model => model.Id)
         </div>
         <div class="col-lg-3">
             @Html.DisplayNameFor(model => model.Owner)
@@ -29,7 +29,7 @@
         @foreach (var auction in Model)
         {
             <div class="col-lg-3">
-                @auction.AuctionId
+                @auction.Id
             </div>
             <div class="col-lg-3">
                 @auction.Owner
@@ -38,7 +38,7 @@
                 @auction.CreationDate
             </div>
             <div class="col-lg-3">
-                @Html.ActionLink("Szczegóły", "Details", new { id = auction.AuctionId })
+                @Html.ActionLink("Szczegóły", "Details", new { id = auction.Id })
             </div>
         }
     </div>

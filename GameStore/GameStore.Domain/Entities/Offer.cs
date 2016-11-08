@@ -8,7 +8,7 @@ namespace GameStore.Domain.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int OfferId { get; set; }
+        public int Id { get; set; }
 
         [DisplayName("Właściciel")]
         public User Owner { get; set; }
@@ -19,5 +19,7 @@ namespace GameStore.Domain.Entities
         // States if the offer was accepted by the client
         [DisplayName("Zatwierdzona")]
         public bool Accepted { get; set; }
+
+        public Auction Auction { get; set; }
     }
 }

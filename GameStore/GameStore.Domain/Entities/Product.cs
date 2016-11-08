@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -8,7 +9,7 @@ namespace GameStore.Domain.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ProductId { get; set; }
+        public int Id { get; set; }
 
         [DisplayName("Nazwa")]
         public string Name { get; set; }
@@ -21,5 +22,7 @@ namespace GameStore.Domain.Entities
 
         [DisplayName("Kategoria")]
         public string Category { get; set; }
+
+        public ICollection<Auction> Auctions { get; set; }
     }
 }

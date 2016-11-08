@@ -32,6 +32,7 @@ namespace GameStore.WebUI.Infrastructure
             kernel.Bind<IProductRepository>().To<EFProductRepository>();
             kernel.Bind<IUserRepository>().To<EFUserRepository>();
             kernel.Bind<IAuctionRepository>().To<EFAuctionRepository>();
+            kernel.Bind<IOfferRepository>().To<EFOfferRepository>();
         }
     }
 }
