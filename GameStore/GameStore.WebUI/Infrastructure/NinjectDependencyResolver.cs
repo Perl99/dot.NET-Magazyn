@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
-using Moq;
 using Ninject;
 using GameStore.Domain.Abstract;
 using GameStore.Domain.Concrete;
-using GameStore.Domain.Entities;
 
 
 namespace GameStore.WebUI.Infrastructure
@@ -33,6 +30,8 @@ namespace GameStore.WebUI.Infrastructure
         private void AddBindings()
         {
             kernel.Bind<IProductRepository>().To<EFProductRepository>();
+            kernel.Bind<IUserRepository>().To<EFUserRepository>();
+            kernel.Bind<IAuctionRepository>().To<EFAuctionRepository>();
         }
     }
 }
