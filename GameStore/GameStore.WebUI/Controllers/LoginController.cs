@@ -26,10 +26,11 @@ namespace GameStore.WebUI.Controllers
                 var usr = repository.FindByLoginAndPassword(user.Login, user.Password);
                 if (usr != null)
                 {
-                    Session["UserId"] = usr.Id.ToString();
-                    Session["Login"] = usr.Login.ToString();
+                    Session["UserId"] = usr.Id;
+                    Session["Login"] = usr.Login;
                     if (Session["UserID"] != null)
                     {
+                        Session["User"] = usr;
                         return RedirectToAction("List", "Product");
                     }
                 }
