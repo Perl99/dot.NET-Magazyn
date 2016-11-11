@@ -1,6 +1,6 @@
 ﻿@using GameStore.Domain.Entities;
-@model IEnumerable<Product>
 
+@model IEnumerable<Product>
 @{
     ViewBag.Title = "Produkty";
 }
@@ -25,4 +25,15 @@
 }
 
 <hr/>
-@Html.ActionLink("Dodaj", "Add")
+@Html.ActionLink("Dodaj", "Add");
+@Html.ActionLink("Przeglad aukcji", "List" ,"Auction")
+
+@* @if (@ViewBag.Uss)
+{
+    @Html.ActionLink("Dodaj aukcje", "Add");
+}
+else
+{
+  <h2>taaa</h2>
+}*@
+

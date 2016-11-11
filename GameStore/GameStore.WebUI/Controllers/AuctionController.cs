@@ -20,11 +20,13 @@ namespace GameStore.WebUI.Controllers
         {
             this.repository = auctionRepository;
             this.productRepository = productRepository;
-            this.userRepository = userRepository;
+            this.userRepository = userRepository;;
         }
 
         public ActionResult List()
         {
+            var a = Session["User"] as User;
+            ViewBag.Uss = a.Type;
             return View(repository.Auctions);
         }
 
@@ -74,10 +76,10 @@ namespace GameStore.WebUI.Controllers
             if (!ModelState.IsValid)
                 return View("Edit", new AuctionViewModel { Products = GetMultiselect(auctionViewModel.SelectedProductIds) });
 
-            User currentUser = Session["user"] as User;
+            int currentUser = (int)Session["UserId"];
             if (currentUser == null) throw new Exception("Current user is null");
 
-            auctionViewModel.Auction.Owner = userRepository.Find(currentUser.Id);
+            auctionViewModel.Auction.Owner = userRepository.Find(currentUser);
 
             foreach (var product in auctionViewModel.SelectedProductIds.Select(productId => productRepository.Find(productId)))
             {

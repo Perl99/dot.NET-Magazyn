@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Web.Mvc;
 using GameStore.Domain.Abstract;
 using GameStore.Domain.Entities;
@@ -21,7 +22,11 @@ namespace GameStore.WebUI.Controllers
               {
                   return RedirectToAction("Login", "Login");
               }
-            return View(repository.Products);
+              else
+              {
+                
+                return View(repository.Products);
+            }     
         }
 
         public ActionResult Details(int? id)

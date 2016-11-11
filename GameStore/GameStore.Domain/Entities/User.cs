@@ -12,7 +12,7 @@ namespace GameStore.Domain.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [DisplayName("Typ")]
+        [DisplayName("Czy konto dostawcy")]
         public bool Type { get; set; }
 
         [DisplayName("Imię")]

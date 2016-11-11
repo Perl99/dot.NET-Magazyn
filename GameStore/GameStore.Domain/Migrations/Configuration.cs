@@ -27,7 +27,7 @@ namespace GameStore.Domain.Migrations
                 Surname = "Eminencja",
                 Login = "admin",
                 Password = "admin",
-                Type = true//UserType.Client
+                Type = false//UserType.Client
             };
 
             context.Users.Add(user);
