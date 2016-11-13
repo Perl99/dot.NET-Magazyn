@@ -182,6 +182,7 @@
     <Content Include="Views\Auction\List.cshtml" />
     <Content Include="Views\Auction\Details.cshtml" />
     <Content Include="Views\Auction\Edit.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

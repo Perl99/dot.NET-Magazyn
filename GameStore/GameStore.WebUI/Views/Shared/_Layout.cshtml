@@ -7,10 +7,32 @@
     <link rel="stylesheet" href="~/Content/bootstrap.css" type="text/css" />
 </head>
 <body>
-<div>
-    @RenderBody()
-</div>
-    <script src="~/scripts/jquery-3.1.1.js"></script>
-    <script src="~/scripts/bootstrap.js"></script>
+    
+    <div class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Przełącz nawigację</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Magazyn .NET</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a asp-area="" asp-controller="Auction" asp-action="List">Aukcje</a></li>
+                    <li><a asp-area="" asp-controller="Product" asp-action="List">Produkty</a></li>
+                </ul>
+               @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+<script src="~/scripts/jquery-3.1.1.js"></script>
+<script src="~/scripts/bootstrap.js"></script>
 </body>
 </html>
