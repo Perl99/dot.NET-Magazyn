@@ -10,7 +10,7 @@
 }
 
 <h2>Edycja</h2>
-@using (Html.BeginForm("DoEdit", "Product"))
+@using (Html.BeginForm("DoEdit", "Product", FormMethod.Post, new { @class = "form-horizontal" }))
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal">
@@ -21,43 +21,43 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name)
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Name)
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Description)
+            <div class="col-md-4">
+                @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Description)
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.Category, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Category)
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.Category, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Category)
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.Price, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Price)
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.Price, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Price)
             </div>
         </div>
 
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+            <div class="col-md-offset-2 col-md-4">
                 <input type="submit" value="Zapisz" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 <div>
-    @Html.ActionLink("Wróć do listy", "List")
+    @Html.ActionLink("Wróć do listy", "List", "Product", null, new { @class = "btn btn-primary" })
 </div>
 
 @*
