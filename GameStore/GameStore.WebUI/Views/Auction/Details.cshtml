@@ -8,101 +8,112 @@
 
 @model GameStore.Domain.Entities.Auction
 
-<div class="container">
-    <h3>Szczegóły aukcji</h3>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd>
-            @Model.Description
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CreationDate)
-        </dt>
-        <dd>
-            @Model.CreationDate
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Owner)
-        </dt>
-        <dd>
-            @Model.Owner.Name @Model.Owner.Surname
-        </dd>
-    </dl>
+<h3>Szczegóły aukcji</h3>
+<hr />
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.Description)
+    </dt>
+    <dd>
+        @Model.Description
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.CreationDate)
+    </dt>
+    <dd>
+        @Model.CreationDate
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Owner)
+    </dt>
+    <dd>
+        @Model.Owner.Name @Model.Owner.Surname
+    </dd>
+</dl>
+
+<div class="panel panel-default" style="margin-top: 40px;">
+    <div class="panel-heading">Produkty w ramach aukcji</div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr class="row">
+                <th class="col-lg-3">
+                    @Html.DisplayNameFor(auction => auction.Products.First().Name)
+                </th>
+                <th class="col-lg-3">
+                    @Html.DisplayNameFor(auction => auction.Products.First().Description)
+                </th>
+                <th class="col-lg-3">
+                    @Html.DisplayNameFor(auction => auction.Products.First().Price)
+                </th>
+                <th class="col-lg-3">
+                    @Html.DisplayNameFor(auction => auction.Products.First().Category)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="row">
+                @foreach (var product in products)
+                {
+                    <td class="col-lg-3">
+                        @product.Name
+                    </td>
+                    <td class="col-lg-3">
+                        @product.Description
+                    </td>
+
+                    <td class="col-lg-3">
+                        @product.Price.ToString("c")
+                    </td>
+                    <td class="col-lg-3">
+                        @product.Category
+                    </td>
+                }
+            </tr>
+        </tbody>
+    </table>
 </div>
 
-<div class="container">
-    <h3>Produkty w ramach aukcji</h3>
-    <div class="row">
-        <div class="col-lg-4">
-            @Html.DisplayNameFor(auction => auction.Products.First().Name)
-        </div>
-        <div class="col-lg-4">
-            @Html.DisplayNameFor(auction => auction.Products.First().Description)
-        </div>
-        <div class="col-lg-4">
-            @Html.DisplayNameFor(auction => auction.Products.First().Price)
-        </div>
-        <div class="col-lg-4">
-            @Html.DisplayNameFor(auction => auction.Products.First().Category)
-        </div>
-    </div>
-    <div class="row">
-        @foreach (var product in products)
-        {
-            <div class="col-lg-6">
-                @product.Name
-            </div>
-            <div class="col-lg-6">
-                @product.Description
-            </div>
+<div class="panel panel-default" style="margin-top: 30px;">
+    <div class="panel-heading">Oferty dostawców</div>
 
-            <div class="col-lg-6">
-                @product.Price.ToString("c")
-            </div>
-            <div class="col-lg-6">
-                @product.Category
-            </div>
-        }
-    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr class="row">
+                <th class="col-lg-3">
+                    @Html.DisplayNameFor(auction => auction.Offers.First().Price)
+                </th>
+                <th class="col-lg-3">
+                    @Html.DisplayNameFor(auction => auction.Offers.First().Owner)
+                </th>
+                <th class="col-lg-3">
+                    @Html.DisplayNameFor(auction => auction.Offers.First().Accepted)
+                </th>
+                <th class="col-lg-3">
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="row">
+                @foreach (var offer in offers)
+                {
+                    <td class="col-lg-3">
+                        @offer.Price.ToString("c")
+                    </td>
+                    <td class="col-lg-3">
+                        @offer.Owner
+                    </td>
+                    <td class="col-lg-3">
+                        @offer.Accepted.ToString()
+                    </td>
+                    <td class="col-lg-3">
+@*                        @Html.ActionLink("Szczegóły", "Details", "Offer", new { id = offer.Id }, null)*@
+                    </td>
+                }
+            </tr>
+        </tbody>
+    </table>
 </div>
 
-<div class="container">
-    <h3>Oferty dostawców</h3>
-    <div class="row">
-        <div class="col-lg-4">
-            @Html.DisplayNameFor(auction => auction.Offers.First().Price)
-        </div>
-        <div class="col-lg-4">
-            @Html.DisplayNameFor(auction => auction.Offers.First().Owner)
-        </div>
-        <div class="col-lg-4">
-            @Html.DisplayNameFor(auction => auction.Offers.First().Accepted)
-        </div>
-        <div class="col-lg-4">
-            Akcje
-        </div>
-    </div>
-    <div class="row">
-        @foreach (var offer in offers)
-        {
-            <div class="col-lg-4">
-                @offer.Price.ToString("c")
-            </div>
-            <div class="col-lg-4">
-                @offer.Owner
-            </div>
-            <div class="col-lg-4">
-                @offer.Accepted.ToString()
-            </div>
-@*            <div class="col-lg-4">*@
-@*                @Html.ActionLink("Szczegóły", "Details", "Offer", new { id = offer.OfferId }, null)*@
-@*            </div>*@
-        }
-    </div>
-</div>
-
-
+<hr/>
 @Html.ActionLink("Złóż ofertę", "Add", "Offer", null, new { @class = "btn btn-primary" })
