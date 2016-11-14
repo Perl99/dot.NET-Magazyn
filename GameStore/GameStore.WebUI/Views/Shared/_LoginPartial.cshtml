@@ -1,0 +1,18 @@
+﻿@{
+    Layout = null;
+}
+
+<ul class="nav navbar-nav navbar-right">
+    @if (@Session["UserId"] != null)
+    {
+        <li>
+            <p class="navbar-text">Zalogowany jako <a href="#" class="navbar-link">@Session["Login"]</a></p>
+        </li>
+        <li>@Html.ActionLink("Wyloguj", "Logout", "Login");</li>
+    }
+    else
+    {
+        <li>@Html.ActionLink("Zarejestruj się", "Register", "Login")</li>
+        <li>@Html.ActionLink("Zaloguj się", "Login", "Login")</li>
+    }
+</ul>

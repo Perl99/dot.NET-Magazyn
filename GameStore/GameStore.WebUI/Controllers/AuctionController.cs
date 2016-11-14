@@ -76,8 +76,8 @@ namespace GameStore.WebUI.Controllers
             if (!ModelState.IsValid)
                 return View("Edit", new AuctionViewModel { Products = GetMultiselect(auctionViewModel.SelectedProductIds) });
 
+            if (Session["UserId"] == null) throw new Exception("Current user is null");
             int currentUser = (int)Session["UserId"];
-            if (currentUser == null) throw new Exception("Current user is null");
 
             auctionViewModel.Auction.Owner = userRepository.Find(currentUser);
 

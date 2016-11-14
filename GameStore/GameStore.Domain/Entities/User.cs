@@ -12,7 +12,7 @@ namespace GameStore.Domain.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [DisplayName("Czy konto dostawcy")]
+        [DisplayName("Konto dostawcy")]
         public bool Type { get; set; }
 
         [DisplayName("Imię")]
@@ -25,7 +25,7 @@ namespace GameStore.Domain.Entities
         [Required(ErrorMessage = "Login jest wymagany")]
         public string Login { get; set; }
 
-        [DisplayName("Password")]
+        [DisplayName("Hasło")]
         [Required(ErrorMessage = "Hasło jest wymagane")]
         [DataType(DataType.Password)]
         public string Password { get; set; }

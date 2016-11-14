@@ -8,19 +8,19 @@
 }
 
 @Html.ValidationSummary()
-@using (Html.BeginForm())
+@using (Html.BeginForm("Login", "Login", FormMethod.Post, new { @class = "form-horizontal" }))
 {
     <div class="form-group">
-        @Html.LabelFor(model => model.Login, new {@class = "control-label col-md-2"})
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Login)
+        @Html.LabelFor(model => model.Login, new { @class = "control-label col-md-2" })
+        <div class="col-md-3">
+            @Html.TextBoxFor(model => model.Login, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Login)
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.PasswordFor(model => model.Password)
+        <div class="col-md-3">
+            @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Password)
         </div>
     </div>
@@ -28,9 +28,5 @@
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Login" class="btn btn-default"/>
         </div>
-    </div>
-
-    <div>
-        @Html.ActionLink("Rejestracja", "Register")
     </div>
 }
