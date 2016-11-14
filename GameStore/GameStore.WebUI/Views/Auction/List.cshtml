@@ -9,45 +9,48 @@
 <h2>Aukcje</h2>
 
 @if (@ViewBag.Uss)
-            {
+        {
 
-            }
-            else
-            {
-     <h2>@Html.ActionLink("Dodaj", "Add", null, new {@class = "btn btn-primary"})</h2>
+        }
+        else
+        {
+    <h2>@Html.ActionLink("Dodaj", "Add", null, new { @class = "btn btn-primary" })</h2>
 }
 
 
-<div class="container">
-    <div class="row">
-        <div class="col-lg-3">
-            @Html.DisplayNameFor(model => model.Id)
-        </div>
-        <div class="col-lg-3">
-            @Html.DisplayNameFor(model => model.Owner)
-        </div>
-        <div class="col-lg-3">
-            @Html.DisplayNameFor(model => model.CreationDate)
-        </div>
-        <div class="col-lg-3">
-            Akcje
-        </div>
-    </div>
-    <div class="row">
-        @foreach (var auction in Model)
-        {
-            <div class="col-lg-3">
-                @auction.Id
-            </div>
-            <div class="col-lg-3">
-                @auction.Owner.Name @auction.Owner.Surname
-            </div>
-            <div class="col-lg-3">
-                @auction.CreationDate
-            </div>
-            <div class="col-lg-3">
-                @Html.ActionLink("Szczegóły", "Details", new { id = auction.Id })
-            </div>
-        }
-    </div>
-</div>
+<table class="table table-striped">
+    <thead>
+        <tr class="row">
+            <th class="col-lg-2">
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th class="col-lg-4">
+                @Html.DisplayNameFor(model => model.Owner)
+            </th>
+            <th class="col-lg-4">
+                @Html.DisplayNameFor(model => model.CreationDate)
+            </th>
+            <th class="col-lg-2">
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="row">
+            @foreach (var auction in Model)
+            {
+                <td class="col-lg-2">
+                    @auction.Id
+                </td>
+                <td class="col-lg-4">
+                    @auction.Owner.Name @auction.Owner.Surname
+                </td>
+                <td class="col-lg-4">
+                    @auction.CreationDate
+                </td>
+                <td class="col-lg-2">
+                    @Html.ActionLink("Szczegóły", "Details", new { id = auction.Id }, new { @class = "btn btn-info" })
+                </td>
+            }
+        </tr>
+    </tbody>
+</table>
