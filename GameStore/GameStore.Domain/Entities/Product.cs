@@ -9,6 +9,7 @@ namespace GameStore.Domain.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DisplayName("Klucz")]
         public int Id { get; set; }
 
         [DisplayName("Nazwa")]
@@ -22,6 +23,9 @@ namespace GameStore.Domain.Entities
 
         [DisplayName("Kategoria")]
         public string Category { get; set; }
+
+        [DisplayName("Właściciel")]
+        public string OwnerLogin { get; set; }
 
         public virtual ICollection<Auction> Auctions { get; set; }
     }

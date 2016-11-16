@@ -36,8 +36,9 @@ namespace GameStore.Domain.Migrations
             {
                 Name = "Produkt 1",
                 Description = "Opis produktu 1",
-                Category = "Fajowe",
-                Price = Convert.ToDecimal(100.99)
+                Category = "Bezcenne",
+                OwnerLogin = "admin",
+                Price = Convert.ToDecimal(999.99)
             };
 
             context.Users.Add(user);

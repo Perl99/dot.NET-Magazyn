@@ -27,15 +27,23 @@ namespace GameStore.Domain.Concrete
             return context.Products.Find(id);
         }
 
-        public void Add(Product product)
-        {
-            context.Products.Add(product);
-            context.SaveChanges();
-        }
-
         public void Save(Product product)
         {
-            context.Entry(product).State = EntityState.Modified;
+            if (product.Id == 0)
+            {
+                context.Products.Add(product);
+            }
+            else
+            {
+                Product dbEntry = context.Products.Find(product.Id);
+                if (dbEntry != null)
+                {
+                    dbEntry.Name = product.Name;
+                    dbEntry.Price = product.Price;
+                    dbEntry.Category = product.Category;
+                    dbEntry.Description = product.Description;
+                }
+            }
             context.SaveChanges();
         }
     }
