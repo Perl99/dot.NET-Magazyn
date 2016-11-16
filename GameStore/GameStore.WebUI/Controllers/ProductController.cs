@@ -74,6 +74,7 @@ namespace GameStore.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
+               product.OwnerLogin = Session["Login"] as string;
                repository.Save(product);
                return RedirectToAction("List");
             }

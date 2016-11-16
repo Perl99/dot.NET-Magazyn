@@ -48,17 +48,18 @@ namespace GameStore.Domain.Migrations
                         Password = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
-            
+
             CreateTable(
                 "dbo.Products",
                 c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        Description = c.String(),
-                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        Category = c.String(),
-                    })
+                {
+                    Id = c.Int(nullable: false, identity: true),
+                    Name = c.String(),
+                    Description = c.String(),
+                    Price = c.Decimal(nullable: false, precision: 18, scale: 2),
+                    Category = c.String(),
+                    OwnerLogin = c.String()
+                })
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
