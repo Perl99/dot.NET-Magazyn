@@ -24,6 +24,7 @@ namespace GameStore.Domain.Entities
         [DisplayName("Kategoria")]
         public string Category { get; set; }
 
+       
         public virtual ICollection<Auction> Auctions { get; set; }
     }
 }
