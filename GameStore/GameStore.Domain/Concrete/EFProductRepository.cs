@@ -35,7 +35,14 @@ namespace GameStore.Domain.Concrete
 
         public void Save(Product product)
         {
-            context.Entry(product).State = EntityState.Modified;
+            Product dbEntry = context.Products.Find(product.Id);
+            if(dbEntry != null)
+            {
+                dbEntry.Name = product.Name;
+                dbEntry.Price = product.Price;
+                dbEntry.Category = product.Category;
+                dbEntry.Description = product.Description;
+            }
             context.SaveChanges();
         }
     }

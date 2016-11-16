@@ -11,6 +11,9 @@
     <thead>
         <tr class="row">
             <th class="col-lg-3">
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th class="col-lg-3">
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th class="col-lg-2">
@@ -26,6 +29,10 @@
         <tr class="row">
             @foreach (var p in Model)
             {
+               <tr class="row">
+                   <td class="col-lg-3">
+                       @p.Id
+                   </td>
                 <td class="col-lg-3">
                     @p.Name
                 </td>
@@ -38,6 +45,8 @@
                 <td class="col-lg-2">
                     @Html.ActionLink("Szczegóły", "Details", new { id = p.Id }, new { @class = "btn btn-info pull-right" })
                 </td>
+
+                   </tr>
             }
         </tr>
     </tbody>

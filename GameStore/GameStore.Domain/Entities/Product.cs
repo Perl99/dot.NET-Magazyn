@@ -9,6 +9,7 @@ namespace GameStore.Domain.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DisplayName("Klucz")]
         public int Id { get; set; }
 
         [DisplayName("Nazwa")]

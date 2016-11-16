@@ -70,17 +70,18 @@ namespace GameStore.WebUI.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DoEdit([Bind(Include = "ProductId,Name,Description,Price,Category")] Product product)
+        public ActionResult DoEdit([Bind(Include = "ProductId,Name,Description,Price,Category")] Product product, int? id)
         {
             if (ModelState.IsValid)
             {
-                if (product.Id <= 0)
+                if (id > 0)
                 {
-                    repository.Add(product);
+                    product.Id = (int)id;
+                    repository.Save(product);
                 }
                 else
                 {
-                    repository.Save(product);
+                    repository.Add(product);
                 }
                 return RedirectToAction("List");
             }
