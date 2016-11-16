@@ -36,23 +36,22 @@
                    <td class="col-lg-3">
                        @p.Id
                    </td>
-                <td class="col-lg-3">
-                    @p.Name
-                </td>
-                <td class="col-lg-2">
-                    @p.Price.ToString("c")
-                </td>
-                <td class="col-lg-5">
-                    @p.Description
-                </td>
-                   <td class="col-lg-2">
-                       @p.OwnerLogin
-                   </td>
-                <td class="col-lg-2">
-                    @Html.ActionLink("Szczegóły", "Details", new { id = p.Id }, new { @class = "btn btn-info pull-right" })
-                </td>
-
-                   </tr>
+                    <td class="col-lg-3">
+                        @p.Name
+                    </td>
+                    <td class="col-lg-2">
+                        @p.Price.ToString("c")
+                    </td>
+                    <td class="col-lg-5">
+                        @p.Description
+                    </td>
+                       <td class="col-lg-2">
+                           @p.OwnerLogin
+                       </td>
+                    <td class="col-lg-2">
+                        @Html.ActionLink("Szczegóły", "Details", new { id = p.Id }, new { @class = "btn btn-info pull-right" })
+                    </td>
+                </tr>
             }
         </tr>
     </tbody>

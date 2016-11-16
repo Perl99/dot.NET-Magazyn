@@ -29,10 +29,10 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Products, new { @class = "control-label col-md-2" })
             <div class="col-md-6">
-                @Html.ListBoxFor(model => model.SelectedProductIds, Model.Products, new { @class = "form-control", multiple ="multpile" })
+              @Html.ListBoxFor(model => model.SelectedProductIds, Model.Products, new { @class = "form-control", multiple = "multpile" })
                 @Html.ValidationMessageFor(model => model.Products)
             </div>
-        </div>
+        </div>W
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-6">

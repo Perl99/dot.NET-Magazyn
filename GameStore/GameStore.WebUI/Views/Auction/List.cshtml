@@ -30,14 +30,14 @@
             <th class="col-lg-4">
                 @Html.DisplayNameFor(model => model.CreationDate)
             </th>
-            <th class="col-lg-2">
-            </th>
+            <td class="col-lg-2"></td>
         </tr>
     </thead>
     <tbody>
         <tr class="row">
             @foreach (var auction in Model)
             {
+            <tr class="row">
                 <td class="col-lg-2">
                     @auction.Id
                 </td>
@@ -50,7 +50,9 @@
                 <td class="col-lg-2">
                     @Html.ActionLink("Szczegóły", "Details", new { id = auction.Id }, new { @class = "btn btn-info pull-right" })
                 </td>
+            </tr>
             }
-        </tr>
-    </tbody>
+            </tr>
+        </tbody>
 </table>
+@Html.ActionLink("Przeglad produktów", "List", "Product", null, new { @class = "btn btn-primary" })
