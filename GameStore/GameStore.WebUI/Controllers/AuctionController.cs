@@ -109,7 +109,7 @@ namespace GameStore.WebUI.Controllers
         private MultiSelectList GetMultiselect(List<int> ids = null)
         {
             if (ids == null)
-                return new MultiSelectList(productRepository.Products.OrderBy(i => i.Name), "Id", "Name");
+                return new MultiSelectList(productRepository.Products.Where(i => i.OwnerLogin == Session["Login"] as String).OrderBy(i => i.Name), "Id", "Name");
 
             return new MultiSelectList(productRepository.Products.OrderBy(i => i.Name), "Id", "Name", ids);
         }
