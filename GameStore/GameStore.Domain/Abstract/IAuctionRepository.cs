@@ -7,7 +7,6 @@ namespace GameStore.Domain.Abstract
     {
         IEnumerable<Auction> Auctions { get; }
         Auction Find(int? id);
-        void Add(Auction auction);
         void Save(Auction auction);
     }
 }

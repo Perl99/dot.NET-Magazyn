@@ -27,18 +27,20 @@ namespace GameStore.Domain.Concrete
             return context.Auctions.Find(id);
         }
 
-        public void Add(Auction auction)
+        public void Save(Auction auction)
         {
             if (auction.Id == 0)
             {
                 context.Auctions.Add(auction);
-                context.SaveChanges();
             }
-        }
-
-        public void Save(Auction auction)
-        {
-            context.Entry(auction).State = EntityState.Modified;
+            else
+            {
+                Auction dbEntry = context.Auctions.Find(auction.Id);
+                if (dbEntry != null)
+                {
+                    dbEntry.Offers = auction.Offers;
+                }
+            }
             context.SaveChanges();
         }
     }

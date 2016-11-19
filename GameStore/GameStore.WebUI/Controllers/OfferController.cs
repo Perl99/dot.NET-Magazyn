@@ -27,7 +27,7 @@ namespace GameStore.WebUI.Controllers
         // GET: Offer
         public ActionResult Add(Auction auction)
         {
-            Session["au"] = auction;
+            Session["auction"] = auction;
             return View();
         }
         [HttpPost]
@@ -36,11 +36,12 @@ namespace GameStore.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var a = Session["au"] as Auction;
-                a.Owner = Session["User"] as User;
-                offer.Auction = a;
-                offer.Owner = offer.Auction.Owner;
+                offer.Owner = Session["User"] as User;
                 repository.Add(offer);
+                var au = Session["auction"] as Auction;
+                Auction a = auctionRepository.Find(au.Id);
+                a.Offers.Add(offer);
+                auctionRepository.Save(a);
                 return RedirectToAction("Details", "Auction", new { id = a.Id } );
             }
             return View();

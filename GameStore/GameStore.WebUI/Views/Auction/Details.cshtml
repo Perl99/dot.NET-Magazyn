@@ -6,7 +6,6 @@
     var products = Model.Products;
     var auctionSend = @Model;
 }
-
 <h3>Szczegóły aukcji</h3>
 <hr />
 <dl class="dl-horizontal">
@@ -29,10 +28,8 @@
         @Model.Owner.Name @Model.Owner.Surname
     </dd>
 </dl>
-
 <div class="panel panel-default" style="margin-top: 40px;">
     <div class="panel-heading">Produkty w ramach aukcji</div>
-
     <table class="table table-striped">
         <thead>
             <tr class="row">
@@ -54,6 +51,7 @@
             <tr class="row">
                 @foreach (var product in products)
                 {
+                <tr class="row">
                     <td class="col-lg-3">
                         @product.Name
                     </td>
@@ -67,52 +65,53 @@
                     <td class="col-lg-3">
                         @product.Category
                     </td>
+                </tr>
                 }
-            </tr>
-        </tbody>
-    </table>
-</div>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="panel panel-default" style="margin-top: 30px;">
+        <div class="panel-heading">Oferty dostawców</div>
+        <table class="table table-striped">
+            <thead>
+                <tr class="row">
+                    <th class="col-lg-3">
+                        @Html.DisplayNameFor(auction => auction.Offers.First().Price)
+                    </th>
+                    <th class="col-lg-3">
+                        @Html.DisplayNameFor(auction => auction.Offers.First().Owner)
+                    </th>
+                    <th class="col-lg-3">
+                        @Html.DisplayNameFor(auction => auction.Offers.First().Accepted)
+                    </th>
+                    <th class="col-lg-3">
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="row">
+                    @foreach (var offer in offers)
+            {
+                    <tr class="row">
+                        <td class="col-lg-3">
+                            @offer.Price.ToString("c")
+                        </td>
+                        <td class="col-lg-3">
+                            @offer.Owner.Name @offer.Owner.Surname
+                        </td>
+                        <td class="col-lg-3">
+                            @offer.Accepted.ToString()
+                        </td>
+                        <td class="col-lg-3">
+                            @*                        @Html.ActionLink("Szczegóły", "Details", "Offer", new { id = offer.Id }, null)*@
+                        </td>
+                    </tr>
 
-<div class="panel panel-default" style="margin-top: 30px;">
-    <div class="panel-heading">Oferty dostawców</div>
-
-    <table class="table table-striped">
-        <thead>
-            <tr class="row">
-                <th class="col-lg-3">
-                    @Html.DisplayNameFor(auction => auction.Offers.First().Price)
-                </th>
-                <th class="col-lg-3">
-                    @Html.DisplayNameFor(auction => auction.Offers.First().Owner)
-                </th>
-                <th class="col-lg-3">
-                    @Html.DisplayNameFor(auction => auction.Offers.First().Accepted)
-                </th>
-                <th class="col-lg-3">
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="row">
-                @foreach (var offer in offers)
-                {
-                    <td class="col-lg-3">
-                        @offer.Price.ToString("c")
-                    </td>
-                    <td class="col-lg-3">
-                        @offer.Owner.Name @offer.Owner.Surname
-                    </td>
-                    <td class="col-lg-3">
-                        @offer.Accepted.ToString()
-                    </td>
-                    <td class="col-lg-3">
-@*                        @Html.ActionLink("Szczegóły", "Details", "Offer", new { id = offer.Id }, null)*@
-                    </td>
-                }
-            </tr>
-        </tbody>
-    </table>
-</div>
-
-<hr/>
-@Html.ActionLink("Złóż ofertę", "Add", "Offer", auctionSend , new { @class = "btn btn-primary" })
+                    }
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <hr />
+        @Html.ActionLink("Złóż ofertę", "Add", "Offer", auctionSend, new { @class = "btn btn-primary" })

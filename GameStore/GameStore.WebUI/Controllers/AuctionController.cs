@@ -92,16 +92,8 @@ namespace GameStore.WebUI.Controllers
                     return HttpNotFound();
                 }
             }
-
-            if (auctionViewModel.Auction.Id <= 0)
-            {
-                auctionViewModel.Auction.CreationDate = DateTime.Now;
-                repository.Add(auctionViewModel.Auction);
-            }
-            else
-            {
-                repository.Save(auctionViewModel.Auction);
-            }
+            auctionViewModel.Auction.CreationDate = DateTime.Now;
+            repository.Save(auctionViewModel.Auction);
 
             return RedirectToAction("List");
         }
