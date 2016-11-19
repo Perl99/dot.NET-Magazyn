@@ -35,8 +35,6 @@ namespace GameStore.Domain.Concrete
 
         public void Save(Offer offer)
         {
-            context.Entry(offer).State = EntityState.Modified;
-            context.SaveChanges();
         }
     }
 }

@@ -29,8 +29,11 @@ namespace GameStore.Domain.Concrete
 
         public void Add(Auction auction)
         {
-            context.Auctions.Add(auction);
-            context.SaveChanges();
+            if (auction.Id == 0)
+            {
+                context.Auctions.Add(auction);
+                context.SaveChanges();
+            }
         }
 
         public void Save(Auction auction)

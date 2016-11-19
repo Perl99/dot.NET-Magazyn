@@ -12,29 +12,36 @@ namespace GameStore.WebUI.Controllers
     public class OfferController : Controller
     {
         private IOfferRepository repository;
-        private Auction _auction;
+        private IAuctionRepository auctionRepository;
+        private IProductRepository productRepository;
+        private IUserRepository userRepository;
 
-        public OfferController(IOfferRepository repository)
+        public OfferController(IOfferRepository repository, IAuctionRepository auctionRepository, IProductRepository productRepository, IUserRepository userRepository)
         {
             this.repository = repository;
+            this.auctionRepository = auctionRepository;
+            this.productRepository = productRepository;
+            this.userRepository = userRepository; ;
         }
 
         // GET: Offer
         public ActionResult Add(Auction auction)
         {
-            ViewBag.Au = auction;
+            Session["au"] = auction;
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add([Bind(Include = "Id,Owner,Price,Accepted,Auction")] Offer offer, Auction auction)
+        public ActionResult Add([Bind(Include = "Id,Owner,Price,Accepted,Auction")] Offer offer)
         {
             if (ModelState.IsValid)
             {
-                offer.Auction = ViewBag.Au;
-                offer.Owner = Session["User"] as User;
+                var a = Session["au"] as Auction;
+                a.Owner = Session["User"] as User;
+                offer.Auction = a;
+                offer.Owner = offer.Auction.Owner;
                 repository.Add(offer);
-                return RedirectToAction("List");
+                return RedirectToAction("Details", "Auction", new { id = a.Id } );
             }
             return View();
         }
