@@ -1,12 +1,11 @@
-﻿
+﻿@model GameStore.Domain.Entities.Auction
 @{
     ViewBag.Title = "Szczegóły aukcji";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var offers = Model.Offers;
     var products = Model.Products;
+    var auctionSend = @Model;
 }
-
-@model GameStore.Domain.Entities.Auction
 
 <h3>Szczegóły aukcji</h3>
 <hr />
@@ -116,4 +115,4 @@
 </div>
 
 <hr/>
-@Html.ActionLink("Złóż ofertę", "Add", "Offer", null, new { @class = "btn btn-primary" })
+@Html.ActionLink("Złóż ofertę", "Add", "Offer", auctionSend , new { @class = "btn btn-primary" })

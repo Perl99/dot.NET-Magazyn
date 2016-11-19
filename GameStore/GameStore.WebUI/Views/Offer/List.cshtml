@@ -1,0 +1,51 @@
+﻿@model IEnumerable<GameStore.Domain.Entities.Offer>
+@using GameStore.Domain.Entities;
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr class="row">
+            <th class="col-lg-1">
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th class="col-lg-3">
+                @Html.DisplayNameFor(model => model.Owner)
+            </th>
+            <th class="col-lg-3">
+                @Html.DisplayNameFor(model => model.Accepted)
+            </th>
+            <th class="col-lg-3">
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <td class="col-lg-2"></td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="row">
+            @foreach (var offer in Model)
+            {
+            <tr class="row">
+                <td class="col-lg-1">
+                    @offer.Id
+                </td>
+                <td class="col-lg-3">
+                    @offer.Owner.Name
+                </td>
+                <td class="col-lg-3">
+                    @offer.Accepted
+                </td>
+                <td class="col-lg-3">
+                    @offer.Price
+                </td>
+            </tr>
+            }
+            </tr>
+        </tbody>
+    </table>
+
+@Html.ActionLink("Przeglad aukcji", "List", "Auction", null, new { @class = "btn btn-primary" })
