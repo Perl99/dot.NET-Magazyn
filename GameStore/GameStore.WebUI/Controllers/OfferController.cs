@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using GameStore.Domain.Abstract;
 using GameStore.Domain.Entities;
 using GameStore.WebUI.Models;
+using System.Net;
 
 namespace GameStore.WebUI.Controllers
 {
@@ -32,14 +33,16 @@ namespace GameStore.WebUI.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add([Bind(Include = "Id,Owner,Price,Accepted,Auction")] Offer offer)
+        public ActionResult Add([Bind(Include = "Id,Owner,Price,Accepted")] Offer offer)
         {
             if (ModelState.IsValid)
             {
                 offer.Owner = Session["User"] as User;
-                repository.Add(offer);
+                offer.Accepted = false;
+                repository.Save(offer);
                 var au = Session["auction"] as Auction;
                 Auction a = auctionRepository.Find(au.Id);
+                offer.Auction = a;
                 a.Offers.Add(offer);
                 auctionRepository.Save(a);
                 return RedirectToAction("Details", "Auction", new { id = a.Id } );
@@ -48,7 +51,32 @@ namespace GameStore.WebUI.Controllers
         }
         public ActionResult List()
         {
+            var user = Session["User"] as User;
+            if (user == null)
+                return RedirectToAction("Login", "Login");
+            if (!user.Type)
+                return RedirectToAction("List", "Auction");
             return View(repository.Offers);
+        }
+        public ActionResult Accept(int? id)
+        {
+            Offer offer = repository.Find(id);
+            offer.Accepted = true;
+            repository.Save(offer);
+            Auction auction = auctionRepository.Find(offer.Auction.Id);
+            foreach(Offer a in auction.Offers)
+            {
+                if(a.Id == id)
+                {
+                    a.Accepted = true;
+                }
+                else
+                {
+                    a.Accepted = false;
+                }
+            }
+            auctionRepository.Save(auction);
+            return RedirectToAction("Details", "Auction", new { id = auction.Id });
         }
     }
 }

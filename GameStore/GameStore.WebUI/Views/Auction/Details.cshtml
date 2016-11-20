@@ -1,10 +1,12 @@
 ﻿@model GameStore.Domain.Entities.Auction
+@using GameStore.Domain.Entities;
 @{
     ViewBag.Title = "Szczegóły aukcji";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var offers = Model.Offers;
     var products = Model.Products;
     var auctionSend = @Model;
+    var user = Session["User"] as User;
 }
 <h3>Szczegóły aukcji</h3>
 <hr />
@@ -71,6 +73,13 @@
             </tbody>
         </table>
     </div>
+@if (Model.Owner != user)
+    {
+        if (user.Type)
+        {
+           @Html.ActionLink("Złóż ofertę", "Add", "Offer", auctionSend, new { @class = "btn btn-primary" })
+        }
+    }
     <div class="panel panel-default" style="margin-top: 30px;">
         <div class="panel-heading">Oferty dostawców</div>
         <table class="table table-striped">
@@ -93,6 +102,7 @@
                 <tr class="row">
                     @foreach (var offer in offers)
             {
+                       
                     <tr class="row">
                         <td class="col-lg-3">
                             @offer.Price.ToString("c")
@@ -104,14 +114,18 @@
                             @offer.Accepted.ToString()
                         </td>
                         <td class="col-lg-3">
-                            @*                        @Html.ActionLink("Szczegóły", "Details", "Offer", new { id = offer.Id }, null)*@
+                            @if (Model.Owner == Session["User"])
+                            {
+                                @Html.ActionLink("Wybierz", "Accept", "Offer", new { id = offer.Id }, new { @class = "btn btn-primary" })
+                            }
                         </td>
                     </tr>
-
                     }
                     </tr>
                 </tbody>
             </table>
         </div>
         <hr />
-        @Html.ActionLink("Złóż ofertę", "Add", "Offer", auctionSend, new { @class = "btn btn-primary" })
+
+
+       

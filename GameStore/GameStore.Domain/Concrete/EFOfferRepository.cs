@@ -35,6 +35,19 @@ namespace GameStore.Domain.Concrete
 
         public void Save(Offer offer)
         {
+            if (offer.Id == 0)
+            {
+                context.Offers.Add(offer);
+            }
+            else
+            {
+                Offer dbEntry = context.Offers.Find(offer.Id);
+                if (dbEntry != null)
+                {
+                    dbEntry.Accepted = offer.Accepted;
+                }
+            }
+            context.SaveChanges();
         }
     }
 }

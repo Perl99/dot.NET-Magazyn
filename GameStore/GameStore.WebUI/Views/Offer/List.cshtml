@@ -1,18 +1,19 @@
 ﻿@model IEnumerable<GameStore.Domain.Entities.Offer>
-
 @{
     ViewBag.Title = "List";
 }
 
 <h2>List</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Id)
+            @Html.DisplayNameFor(model => model.Auction.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Auction.Owner.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Auction.Owner.Surname)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Price)
@@ -24,9 +25,17 @@
     </tr>
 
 @foreach (var item in Model) {
+    if (item.Owner == Session["User"])
+    {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Id)
+            @Html.DisplayFor(modelItem => item.Auction.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Auction.Owner.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Auction.Owner.Surname)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Price)
@@ -35,6 +44,7 @@
             @Html.DisplayFor(modelItem => item.Accepted)
         </td>
     </tr>
+    }
 }
 
 </table>

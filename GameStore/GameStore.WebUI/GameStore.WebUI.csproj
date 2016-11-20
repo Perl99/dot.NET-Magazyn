@@ -186,6 +186,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Offer\Add.cshtml" />
     <Content Include="Views\Offer\List.cshtml" />
+    <Content Include="Views\Offer\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

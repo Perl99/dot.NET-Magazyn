@@ -25,8 +25,9 @@ namespace GameStore.WebUI.Controllers
 
         public ActionResult List()
         {
-            var a = Session["User"] as User;
-            ViewBag.Uss = a.Type;
+            var user = Session["User"] as User;
+            if(user == null)
+                return RedirectToAction("Login", "Login");
             return View(repository.Auctions);
         }
 
