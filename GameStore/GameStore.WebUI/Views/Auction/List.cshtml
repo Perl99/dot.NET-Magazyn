@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Lista aukcji";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -8,22 +7,12 @@
 
 <h2>Aukcje</h2>
 
-@if (@ViewBag.Uss)
-        {
-
-        }
-        else
-        {
-    <h2>@Html.ActionLink("Dodaj", "Add", null, new { @class = "btn btn-primary" })</h2>
-}
+<h2>@Html.ActionLink("Dodaj nową aukcję", "Add", null, new { @class = "btn btn-primary" })</h2>
 
 
 <table class="table table-striped">
     <thead>
         <tr class="row">
-            <th class="col-lg-2">
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
             <th class="col-lg-4">
                 @Html.DisplayNameFor(model => model.Owner)
             </th>
@@ -38,9 +27,6 @@
             @foreach (var auction in Model)
             {
             <tr class="row">
-                <td class="col-lg-2">
-                    @auction.Id
-                </td>
                 <td class="col-lg-4">
                     @auction.Owner.Name @auction.Owner.Surname
                 </td>
@@ -56,3 +42,4 @@
         </tbody>
 </table>
 @Html.ActionLink("Przeglad produktów", "List", "Product", null, new { @class = "btn btn-primary" })
+@Html.ActionLink("Przeglad ofert", "List", "Offer", null, new { @class = "btn btn-primary" })

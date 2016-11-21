@@ -20,6 +20,7 @@ namespace GameStore.Domain.Entities
         [DisplayName("Zatwierdzona")]
         public bool Accepted { get; set; }
 
+        [DisplayName("Aukcja")]
         public Auction Auction { get; set; }
     }
 }

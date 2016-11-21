@@ -25,8 +25,9 @@ namespace GameStore.WebUI.Controllers
 
         public ActionResult List()
         {
-            var a = Session["User"] as User;
-            ViewBag.Uss = a.Type;
+            var user = Session["User"] as User;
+            if(user == null)
+                return RedirectToAction("Login", "Login");
             return View(repository.Auctions);
         }
 
@@ -92,16 +93,8 @@ namespace GameStore.WebUI.Controllers
                     return HttpNotFound();
                 }
             }
-
-            if (auctionViewModel.Auction.Id <= 0)
-            {
-                auctionViewModel.Auction.CreationDate = DateTime.Now;
-                repository.Add(auctionViewModel.Auction);
-            }
-            else
-            {
-                repository.Save(auctionViewModel.Auction);
-            }
+            auctionViewModel.Auction.CreationDate = DateTime.Now;
+            repository.Save(auctionViewModel.Auction);
 
             return RedirectToAction("List");
         }
