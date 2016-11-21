@@ -45,6 +45,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
@@ -92,9 +93,9 @@
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserType.cs" />
-    <Compile Include="Migrations\201611082150468_Initial.cs" />
-    <Compile Include="Migrations\201611082150468_Initial.Designer.cs">
-      <DependentUpon>201611082150468_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201611212140449_Initial.cs" />
+    <Compile Include="Migrations\201611212140449_Initial.Designer.cs">
+      <DependentUpon>201611212140449_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -104,8 +105,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611082150468_Initial.resx">
-      <DependentUpon>201611082150468_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611212140449_Initial.resx">
+      <DependentUpon>201611212140449_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

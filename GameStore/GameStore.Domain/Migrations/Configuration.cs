@@ -1,5 +1,6 @@
 using System;
 using System.Data.Entity.Migrations;
+using System.Web;
 using GameStore.Domain.Concrete;
 using GameStore.Domain.Entities;
 
@@ -12,6 +13,14 @@ namespace GameStore.Domain.Migrations
             AutomaticMigrationDataLossAllowed = true;
             AutomaticMigrationsEnabled = true;
             ContextKey = "GameStore.Domain.Concrete.EFDbContext";
+
+            if (HttpContext.Current == null)
+            {
+                // dla migracji
+                string dbPath =
+                    System.IO.Path.GetFullPath(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\Databases"));
+                AppDomain.CurrentDomain.SetData("DataDirectory", dbPath);
+            }
         }
 
         protected override void Seed(EFDbContext context)
