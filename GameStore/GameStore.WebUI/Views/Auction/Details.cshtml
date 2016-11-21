@@ -1,11 +1,12 @@
-﻿@model GameStore.Domain.Entities.Auction
-@using GameStore.Domain.Entities;
+﻿@using GameStore.Domain.Entities;
+@model Auction
+
 @{
     ViewBag.Title = "Szczegóły aukcji";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var offers = Model.Offers;
     var products = Model.Products;
-    var auctionSend = @Model;
+    var auctionSend = Model;
     var user = Session["User"] as User;
 }
 <h3>Szczegóły aukcji</h3>
@@ -50,9 +51,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="row">
-                @foreach (var product in products)
-                {
+            @foreach (var product in products)
+            {
                 <tr class="row">
                     <td class="col-lg-3">
                         @product.Name
@@ -68,64 +68,56 @@
                         @product.Category
                     </td>
                 </tr>
-                }
-                </tr>
-            </tbody>
-        </table>
-    </div>
+            }
+        </tbody>
+    </table>
+</div>
 @if (Model.Owner != user)
+{
+    if (user.Type)
     {
-        if (user.Type)
-        {
-           @Html.ActionLink("Złóż ofertę", "Add", "Offer", auctionSend, new { @class = "btn btn-primary" })
-        }
+        @Html.ActionLink("Złóż ofertę", "Add", "Offer", auctionSend, new { @class = "btn btn-primary" })
     }
-    <div class="panel panel-default" style="margin-top: 30px;">
-        <div class="panel-heading">Oferty dostawców</div>
-        <table class="table table-striped">
-            <thead>
-                <tr class="row">
-                    <th class="col-lg-3">
-                        @Html.DisplayNameFor(auction => auction.Offers.First().Price)
-                    </th>
-                    <th class="col-lg-3">
-                        @Html.DisplayNameFor(auction => auction.Offers.First().Owner)
-                    </th>
-                    <th class="col-lg-3">
-                        @Html.DisplayNameFor(auction => auction.Offers.First().Accepted)
-                    </th>
-                    <th class="col-lg-3">
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="row">
-                    @foreach (var offer in offers)
-            {
-                       
-                    <tr class="row">
-                        <td class="col-lg-3">
-                            @offer.Price.ToString("c")
-                        </td>
-                        <td class="col-lg-3">
-                            @offer.Owner.Name @offer.Owner.Surname
-                        </td>
-                        <td class="col-lg-3">
-                            @offer.Accepted.ToString()
-                        </td>
-                        <td class="col-lg-3">
-                            @if (Model.Owner == Session["User"])
-                            {
-                                @Html.ActionLink("Wybierz", "Accept", "Offer", new { id = offer.Id }, new { @class = "btn btn-primary" })
-                            }
-                        </td>
-                    </tr>
+}
+<div class="panel panel-default" style="margin-top: 30px;">
+    <div class="panel-heading">Oferty dostawców</div>
+    <table class="table table-striped">
+        <thead>
+        <tr class="row">
+            <th class="col-lg-3">
+                @Html.DisplayNameFor(auction => auction.Offers.First().Price)
+            </th>
+            <th class="col-lg-3">
+                @Html.DisplayNameFor(auction => auction.Offers.First().Owner)
+            </th>
+            <th class="col-lg-3">
+                @Html.DisplayNameFor(auction => auction.Offers.First().Accepted)
+            </th>
+            <th class="col-lg-3">
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var offer in offers)
+        {
+            <tr class="row">
+                <td class="col-lg-3">
+                    @offer.Price.ToString("c")
+                </td>
+                <td class="col-lg-3">
+                    @offer.Owner.Name @offer.Owner.Surname
+                </td>
+                <td class="col-lg-3">
+                    @offer.Accepted.ToString()
+                </td>
+                <td class="col-lg-3">
+                    @if (Model.Owner == Session["User"])
+                    {
+                        @Html.ActionLink("Wybierz", "Accept", "Offer", new { id = offer.Id }, new { @class = "btn btn-primary" })
                     }
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <hr />
-
-
-       
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

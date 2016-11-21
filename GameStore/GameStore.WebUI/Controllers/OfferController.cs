@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using GameStore.Domain.Abstract;
 using GameStore.Domain.Entities;
-using GameStore.WebUI.Models;
-using System.Net;
 
 namespace GameStore.WebUI.Controllers
 {
@@ -14,15 +8,11 @@ namespace GameStore.WebUI.Controllers
     {
         private IOfferRepository repository;
         private IAuctionRepository auctionRepository;
-        private IProductRepository productRepository;
-        private IUserRepository userRepository;
 
         public OfferController(IOfferRepository repository, IAuctionRepository auctionRepository, IProductRepository productRepository, IUserRepository userRepository)
         {
             this.repository = repository;
             this.auctionRepository = auctionRepository;
-            this.productRepository = productRepository;
-            this.userRepository = userRepository; ;
         }
 
         // GET: Offer
@@ -66,14 +56,7 @@ namespace GameStore.WebUI.Controllers
             Auction auction = auctionRepository.Find(offer.Auction.Id);
             foreach(Offer a in auction.Offers)
             {
-                if(a.Id == id)
-                {
-                    a.Accepted = true;
-                }
-                else
-                {
-                    a.Accepted = false;
-                }
+                a.Accepted = (a.Id == id);
             }
             auctionRepository.Save(auction);
             return RedirectToAction("Details", "Auction", new { id = auction.Id });
