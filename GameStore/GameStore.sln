@@ -10,6 +10,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStore.UnitTest", "GameStore.UnitTest\GameStore.UnitTest.csproj", "{B811B1D2-316A-4F1C-86D5-F4DFF66AD5A6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStore.REST", "GameStore.REST\GameStore.REST.csproj", "{AF6B7DA1-66DF-4947-8D81-80A75678017D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3CC6183A-B102-4C58-8E11-98F1669894CA} = {3CC6183A-B102-4C58-8E11-98F1669894CA}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

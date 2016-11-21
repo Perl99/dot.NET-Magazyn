@@ -1,7 +1,10 @@
-[assembly: WebActivator.PreApplicationStartMethod(typeof(GameStore.WebUI.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(GameStore.WebUI.App_Start.NinjectWebCommon), "Stop")]
+using GameStore.Domain.Abstract;
+using GameStore.Domain.Concrete;
 
-namespace GameStore.WebUI.App_Start
+[assembly: WebActivator.PreApplicationStartMethod(typeof(GameStore.REST.App_Start.NinjectWebCommon), "Start")]
+[assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(GameStore.REST.App_Start.NinjectWebCommon), "Stop")]
+
+namespace GameStore.REST.App_Start
 {
     using System;
     using System.Web;
@@ -11,7 +14,7 @@ namespace GameStore.WebUI.App_Start
     using Ninject;
     using Ninject.Web.Common;
 
-    public static class NinjectWebCommon 
+    public static class NinjectWebCommon
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
@@ -24,7 +27,7 @@ namespace GameStore.WebUI.App_Start
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             bootstrapper.Initialize(CreateKernel);
         }
-        
+
         /// <summary>
         /// Stops the application.
         /// </summary>
@@ -32,7 +35,7 @@ namespace GameStore.WebUI.App_Start
         {
             bootstrapper.ShutDown();
         }
-        
+
         /// <summary>
         /// Creates the kernel that will manage your application.
         /// </summary>
@@ -42,7 +45,7 @@ namespace GameStore.WebUI.App_Start
             var kernel = new StandardKernel();
             kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
             kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
-            
+
             RegisterServices(kernel);
             return kernel;
         }
@@ -53,7 +56,11 @@ namespace GameStore.WebUI.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            System.Web.Mvc.DependencyResolver.SetResolver(new Infrastructure.NinjectDependencyResolver(kernel));
-        }        
+            kernel.Bind<IProductRepository>().To<EFProductRepository>();
+            kernel.Bind<IUserRepository>().To<EFUserRepository>();
+            kernel.Bind<IAuctionRepository>().To<EFAuctionRepository>();
+            kernel.Bind<IOfferRepository>().To<EFOfferRepository>();
+            kernel.Bind<EFDbContext>().To<EFDbContext>().InSingletonScope();
+        }
     }
 }
