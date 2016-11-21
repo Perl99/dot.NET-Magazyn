@@ -41,25 +41,25 @@ namespace GameStore.Domain.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Type = c.Int(nullable: false),
+                        Type = c.Boolean(nullable: false),
                         Name = c.String(),
                         Surname = c.String(),
-                        Login = c.String(),
-                        Password = c.String(),
+                        Login = c.String(nullable: false),
+                        Password = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
-
+            
             CreateTable(
                 "dbo.Products",
                 c => new
-                {
-                    Id = c.Int(nullable: false, identity: true),
-                    Name = c.String(),
-                    Description = c.String(),
-                    Price = c.Decimal(nullable: false, precision: 18, scale: 2),
-                    Category = c.String(),
-                    OwnerLogin = c.String()
-                })
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        Description = c.String(),
+                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Category = c.String(),
+                        OwnerLogin = c.String(),
+                    })
                 .PrimaryKey(t => t.Id);
             
             CreateTable(

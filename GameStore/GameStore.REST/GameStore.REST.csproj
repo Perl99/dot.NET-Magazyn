@@ -93,14 +93,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="GlobalREST.asax" />
+    <Content Include="Global.asax" />
     <Content Include="ProductService.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
-    <Compile Include="GlobalREST.asax.cs">
-      <DependentUpon>GlobalREST.asax</DependentUpon>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="IProductService.cs" />
     <Compile Include="ProductService.svc.cs">
@@ -108,9 +108,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">

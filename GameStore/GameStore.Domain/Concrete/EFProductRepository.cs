@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data.Entity;
 using GameStore.Domain.Abstract;
 using GameStore.Domain.Entities;
 

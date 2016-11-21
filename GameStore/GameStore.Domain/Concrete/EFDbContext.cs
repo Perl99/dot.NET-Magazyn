@@ -9,6 +9,8 @@ namespace GameStore.Domain.Concrete
 
         public EFDbContext()
         {
+            Configuration.LazyLoadingEnabled = false;
+            Configuration.ProxyCreationEnabled = false;
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<EFDbContext, Configuration>());
         }
 

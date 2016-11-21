@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using GameStore.Domain.Abstract;
 using GameStore.Domain.Entities;
 
@@ -13,9 +16,15 @@ namespace GameStore.REST
         {
             this.productRepository = productRepository;
         }
+
         public Product Get(string id)
         {
             return productRepository.Find(Int32.Parse(id));
+        }
+
+        public List<Product> List()
+        {
+            return productRepository.Products.ToList();
         }
     }
 }
