@@ -92,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Services\AuctionService.svc" />
     <Content Include="Services\OfferService.svc" />
     <Content Include="Services\ProductService.svc" />
     <Content Include="Web.config" />
@@ -105,6 +106,10 @@
     <Compile Include="JSONs\OfferJson.cs" />
     <Compile Include="JSONs\ProductJson.cs" />
     <Compile Include="JSONs\UserJson.cs" />
+    <Compile Include="Services\AuctionService.svc.cs">
+      <DependentUpon>AuctionService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Services\IAuctionService.cs" />
     <Compile Include="Services\IOfferService.cs" />
     <Compile Include="Services\IProductService.cs" />
     <Compile Include="Services\OfferService.svc.cs">

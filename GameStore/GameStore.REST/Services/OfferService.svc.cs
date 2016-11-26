@@ -33,7 +33,7 @@ namespace GameStore.REST.Services
             return new OfferJson(offer);
         }
 
-        public List<OfferJson> List(string auctionId) => offerRepository.Offers.Select(offer => new OfferJson(offer)).ToList();
+        public List<OfferJson> List(string auctionId) => auctionRepository.Find(int.Parse(auctionId)).Offers.Select(offer => new OfferJson(offer)).ToList();
 
         public void Save(string auctionId, OfferJson json)
         {
