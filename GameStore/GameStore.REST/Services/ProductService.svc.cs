@@ -20,45 +20,29 @@ namespace GameStore.REST.Services
 
         public ProductJson Get(string id)
         {
-            Product dBProductJson = productRepository.Find(int.Parse(id));
+            Product product = productRepository.Find(int.Parse(id));
 
-            if (dBProductJson == null)
+            if (product == null)
             {
                 throw new WebFaultException(HttpStatusCode.NotFound);
             }
 
-            ProductJson productJson = new ProductJson();
-
-            return productJson;
+            return new ProductJson(product);
         }
 
         public List<ProductJson> List()
         {
-            return productRepository.Products.Select(product => new ProductJson
-            {
-                Id = product.Id,
-                Name = product.Name,
-                Description = product.Description,
-                Category = product.Category,
-                Price = product.Price,
-                OwnerLogin = product.OwnerLogin
-            }).ToList();
+            return productRepository.Products.Select(product => new ProductJson(product)).ToList();
         }
 
         public void Save(ProductJson json)
         {
-            productRepository.Save(
-                new Product
-                {
-                    Id = json.Id,
-                    Name = json.Name,
-                    Description = json.Description,
-                    Category = json.Category,
-                    Price = json.Price,
-                    OwnerLogin = "TMP" // TODO: faktyczny login z sesji użytkownika
-                    //OwnerLogin = json.OwnerLogin
-                }
-            );
+            // TODO: walidacja
+
+            Product product = json.ToProduct();
+            product.OwnerLogin = "TMP"; // TODO: faktyczny login z sesji użytkownika
+
+            productRepository.Save(product);
         }
     }
 }

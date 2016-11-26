@@ -1,4 +1,5 @@
 ﻿using System.Runtime.Serialization;
+using GameStore.Domain.Entities;
 
 namespace GameStore.REST.JSONs
 {
@@ -20,7 +21,27 @@ namespace GameStore.REST.JSONs
         [DataMember(Name = "Category", IsRequired = true)]
         public string Category { get; set; }
 
-        [DataMember(Name = "Właściciel", IsRequired = false)]
+        [DataMember(Name = "OwnerLogin", IsRequired = false)]
         public string OwnerLogin { get; set; }
+
+        public ProductJson(Product product)
+        {
+            Id = product.Id;
+            Name = product.Name;
+            Description = product.Description;
+            Category = product.Category;
+            Price = product.Price;
+            OwnerLogin = product.OwnerLogin;
+        }
+
+        public Product ToProduct() => new Product
+        {
+            Id = Id,
+            Name = Name,
+            Description = Description,
+            Category = Category,
+            Price = Price,
+            OwnerLogin = OwnerLogin
+        };
     }
 }
