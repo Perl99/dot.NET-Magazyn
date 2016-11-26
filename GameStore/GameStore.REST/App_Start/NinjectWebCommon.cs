@@ -1,5 +1,6 @@
 using GameStore.Domain.Abstract;
 using GameStore.Domain.Concrete;
+using GameStore.REST.Security;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof(GameStore.REST.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(GameStore.REST.App_Start.NinjectWebCommon), "Stop")]
@@ -60,6 +61,7 @@ namespace GameStore.REST.App_Start
             kernel.Bind<IUserRepository>().To<EFUserRepository>();
             kernel.Bind<IAuctionRepository>().To<EFAuctionRepository>();
             kernel.Bind<IOfferRepository>().To<EFOfferRepository>();
+            kernel.Bind<Authorization>().To<Authorization>();
             kernel.Bind<EFDbContext>().To<EFDbContext>().InSingletonScope();
         }
     }

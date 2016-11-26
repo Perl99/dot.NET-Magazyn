@@ -5,6 +5,7 @@ using System.ServiceModel.Web;
 using GameStore.Domain.Abstract;
 using GameStore.Domain.Entities;
 using GameStore.REST.JSONs;
+using Authorization = GameStore.REST.Security.Authorization;
 
 namespace GameStore.REST.Services
 {
@@ -12,10 +13,12 @@ namespace GameStore.REST.Services
     public class ProductService : IProductService
     {
         private IProductRepository productRepository;
+        private Authorization authorization;
 
-        public ProductService(IProductRepository productRepository)
+        public ProductService(IProductRepository productRepository, Authorization authorization)
         {
             this.productRepository = productRepository;
+            this.authorization = authorization;
         }
 
         public ProductJson Get(string id)
@@ -30,7 +33,14 @@ namespace GameStore.REST.Services
             return new ProductJson(product);
         }
 
-        public List<ProductJson> List() => productRepository.Products.Select(product => new ProductJson(product)).ToList();
+        public List<ProductJson> List()
+        {
+            if (!authorization.IsAuthorized())
+            {
+                throw new WebFaultException(HttpStatusCode.Unauthorized);
+            }
+            return productRepository.Products.Select(product => new ProductJson(product)).ToList();
+        }
 
         public void Save(ProductJson json)
         {
