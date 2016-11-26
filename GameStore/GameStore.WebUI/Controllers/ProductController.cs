@@ -1,5 +1,4 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using System.Web.Mvc;
 using GameStore.Domain.Abstract;
 using GameStore.Domain.Entities;
@@ -13,20 +12,16 @@ namespace GameStore.WebUI.Controllers
 
         public ProductController(IProductRepository productRepository)
         {
-            this.repository = productRepository;
+            repository = productRepository;
         }
 
         public ActionResult List()
         {
-              if(Session["UserId"] == null)
-              {
-                  return RedirectToAction("Login", "Login");
-              }
-              else
-              {
-                
-                return View(repository.Products);
-            }     
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            return View(repository.Products);
         }
 
         public ActionResult Details(int? id)
@@ -74,9 +69,9 @@ namespace GameStore.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-               product.OwnerLogin = Session["Login"] as string;
-               repository.Save(product);
-               return RedirectToAction("List");
+                product.OwnerLogin = Session["Login"] as string;
+                repository.Save(product);
+                return RedirectToAction("List");
             }
             return View("Edit", product);
         }

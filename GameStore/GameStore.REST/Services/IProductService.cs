@@ -1,19 +1,23 @@
 ﻿using System.Collections.Generic;
 using System.ServiceModel;
 using System.ServiceModel.Web;
-using GameStore.Domain.Entities;
+using GameStore.REST.JSONs;
 
-namespace GameStore.REST
+namespace GameStore.REST.Services
 {
     [ServiceContract]
     public interface IProductService
     {
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "get/{id}")]
-        Product Get(string id);
+        ProductJson Get(string id);
 
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "list")]
-        List<Product> List();
+        List<ProductJson> List();
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "save/{id}")]
+        void Save(ProductJson json);
     }
 }
