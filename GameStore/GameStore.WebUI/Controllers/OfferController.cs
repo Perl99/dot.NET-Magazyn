@@ -9,7 +9,7 @@ namespace GameStore.WebUI.Controllers
         private IOfferRepository repository;
         private IAuctionRepository auctionRepository;
 
-        public OfferController(IOfferRepository repository, IAuctionRepository auctionRepository, IProductRepository productRepository, IUserRepository userRepository)
+        public OfferController(IOfferRepository repository, IAuctionRepository auctionRepository)
         {
             this.repository = repository;
             this.auctionRepository = auctionRepository;
