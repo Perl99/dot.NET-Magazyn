@@ -30,10 +30,7 @@ namespace GameStore.REST.Services
             return new ProductJson(product);
         }
 
-        public List<ProductJson> List()
-        {
-            return productRepository.Products.Select(product => new ProductJson(product)).ToList();
-        }
+        public List<ProductJson> List() => productRepository.Products.Select(product => new ProductJson(product)).ToList();
 
         public void Save(ProductJson json)
         {

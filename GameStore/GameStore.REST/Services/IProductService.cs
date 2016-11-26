@@ -17,7 +17,7 @@ namespace GameStore.REST.Services
         List<ProductJson> List();
 
         [OperationContract]
-        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "save/{id}")]
+        [WebInvoke(Method = "POST", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "save")]
         void Save(ProductJson json);
     }
 }

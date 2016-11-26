@@ -10,7 +10,7 @@ namespace GameStore.REST.JSONs
         [DataMember(Name = "Id", IsRequired = true)]
         public int Id { get; set; }
 
-        [DataMember(Name = "Owner", IsRequired = true)]
+        [DataMember(Name = "Owner", IsRequired = false)]
         public UserJson Owner { get; set; }
 
         [DataMember(Name = "Price", IsRequired = true)]
