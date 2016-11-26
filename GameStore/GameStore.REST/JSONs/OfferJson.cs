@@ -25,7 +25,10 @@ namespace GameStore.REST.JSONs
         public OfferJson(Offer offer)
         {
             Id = offer.Id;
+
+            offer.Owner.Password = null;
             Owner = new UserJson(offer.Owner);
+
             Price = offer.Price;
             Accepted = offer.Accepted;
             AuctionId = offer.Auction.Id;

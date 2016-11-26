@@ -38,7 +38,10 @@ namespace GameStore.REST.JSONs
             Id = auction.Id;
             Products = auction.Products.Select(product => new ProductJson(product)).ToList();
             Description = auction.Description;
+
+            auction.Owner.Password = null;
             Owner = new UserJson(auction.Owner);
+
             Offers = auction.Offers.Select(offer => new OfferJson(offer)).ToList();
             CreationDate = auction.CreationDate;
         }

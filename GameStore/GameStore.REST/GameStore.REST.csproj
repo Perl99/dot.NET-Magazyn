@@ -93,6 +93,7 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Services\AuctionService.svc" />
+    <Content Include="Services\LoginService.svc" />
     <Content Include="Services\OfferService.svc" />
     <Content Include="Services\ProductService.svc" />
     <Content Include="Web.config" />
@@ -103,6 +104,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="JSONs\AuctionJson.cs" />
+    <Compile Include="JSONs\LoginJson.cs" />
     <Compile Include="JSONs\OfferJson.cs" />
     <Compile Include="JSONs\ProductJson.cs" />
     <Compile Include="JSONs\UserJson.cs" />
@@ -110,8 +112,12 @@
       <DependentUpon>AuctionService.svc</DependentUpon>
     </Compile>
     <Compile Include="Services\IAuctionService.cs" />
+    <Compile Include="Services\ILoginService.cs" />
     <Compile Include="Services\IOfferService.cs" />
     <Compile Include="Services\IProductService.cs" />
+    <Compile Include="Services\LoginService.svc.cs">
+      <DependentUpon>LoginService.svc</DependentUpon>
+    </Compile>
     <Compile Include="Services\OfferService.svc.cs">
       <DependentUpon>OfferService.svc</DependentUpon>
     </Compile>
