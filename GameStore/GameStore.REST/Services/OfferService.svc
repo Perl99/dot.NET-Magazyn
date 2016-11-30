@@ -1,1 +1,1 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="GameStore.REST.Services.OfferService" CodeBehind="OfferService.svc.cs" %>
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="GameStore.REST.Services.OfferService" CodeBehind="OfferService.svc.cs" Factory="Ninject.Extensions.Wcf.NinjectServiceHostFactory" %>

@@ -3,7 +3,7 @@ using GameStore.Domain.Concrete;
 using GameStore.REST.Security;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof(GameStore.REST.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(GameStore.REST.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivator.ApplicationShutdownMethod(typeof(GameStore.REST.App_Start.NinjectWebCommon), "Stop")]
 
 namespace GameStore.REST.App_Start
 {
