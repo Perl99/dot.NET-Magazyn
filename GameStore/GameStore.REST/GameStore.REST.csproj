@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -70,8 +70,6 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data.Services" />
     <Reference Include="System.ServiceModel.Activation" />
-    <Reference Include="System.Web.DynamicData" />
-    <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -94,16 +92,37 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="ProductService.svc" />
+    <Content Include="Services\AuctionService.svc" />
+    <Content Include="Services\LoginService.svc" />
+    <Content Include="Services\OfferService.svc" />
+    <Content Include="Services\ProductService.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="Security\Authorization.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="IProductService.cs" />
-    <Compile Include="ProductService.svc.cs">
+    <Compile Include="JSONs\AuctionJson.cs" />
+    <Compile Include="JSONs\LoginJson.cs" />
+    <Compile Include="JSONs\OfferJson.cs" />
+    <Compile Include="JSONs\ProductJson.cs" />
+    <Compile Include="JSONs\UserJson.cs" />
+    <Compile Include="Services\AuctionService.svc.cs">
+      <DependentUpon>AuctionService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Services\IAuctionService.cs" />
+    <Compile Include="Services\ILoginService.cs" />
+    <Compile Include="Services\IOfferService.cs" />
+    <Compile Include="Services\IProductService.cs" />
+    <Compile Include="Services\LoginService.svc.cs">
+      <DependentUpon>LoginService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Services\OfferService.svc.cs">
+      <DependentUpon>OfferService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Services\ProductService.svc.cs">
       <DependentUpon>ProductService.svc</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -11,7 +11,7 @@ namespace GameStore.WebUI.Controllers
 
         public LoginController(IUserRepository userRepository)
         {
-            this.repository = userRepository;
+            repository = userRepository;
         }
 
         public ActionResult Login()

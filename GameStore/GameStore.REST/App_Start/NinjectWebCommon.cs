@@ -1,8 +1,9 @@
 using GameStore.Domain.Abstract;
 using GameStore.Domain.Concrete;
+using GameStore.REST.Security;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof(GameStore.REST.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(GameStore.REST.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivator.ApplicationShutdownMethod(typeof(GameStore.REST.App_Start.NinjectWebCommon), "Stop")]
 
 namespace GameStore.REST.App_Start
 {
@@ -21,7 +22,7 @@ namespace GameStore.REST.App_Start
         /// <summary>
         /// Starts the application
         /// </summary>
-        public static void Start() 
+        public static void Start()
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
@@ -60,6 +61,7 @@ namespace GameStore.REST.App_Start
             kernel.Bind<IUserRepository>().To<EFUserRepository>();
             kernel.Bind<IAuctionRepository>().To<EFAuctionRepository>();
             kernel.Bind<IOfferRepository>().To<EFOfferRepository>();
+            kernel.Bind<Authorization>().To<Authorization>();
             kernel.Bind<EFDbContext>().To<EFDbContext>().InSingletonScope();
         }
     }
