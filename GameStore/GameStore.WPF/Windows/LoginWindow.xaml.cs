@@ -1,11 +1,9 @@
-﻿using System;
-using System.Net;
-using System.ServiceModel.Web;
+﻿using System.ServiceModel.Security;
 using System.Windows;
 using GameStore.REST.JSONs;
-using GameStore.WPF.LoginService;
+using GameStore.WPF.Services;
 
-namespace GameStore.WPF
+namespace GameStore.WPF.Windows
 {
     /// <summary>
     /// Interaction logic for LoginWindow.xaml
@@ -27,21 +25,14 @@ namespace GameStore.WPF
                 Password = PasswordBox.Password
             };
 
-            int userId = -1;
             try
             {
-                userId = loginClient.Login(json);
+                loginClient.Login(json);
             }
-            catch (WebFaultException exception)
+            catch (MessageSecurityException)
             {
-                if (exception.StatusCode == HttpStatusCode.Unauthorized)
-                {
-                    LoginFailedLabel.Visibility = Visibility.Visible;
-                }
+                LoginFailedLabel.Visibility = Visibility.Visible;
             }
-
-            // TODO
-            Console.Out.Write(userId);
         }
     }
 }
