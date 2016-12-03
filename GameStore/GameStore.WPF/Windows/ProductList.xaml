@@ -10,13 +10,19 @@
             <MenuItem Header="Produkty"/>
             <MenuItem Header="Aukcje"/>
         </Menu>
-        <DataGrid x:Name="ProductDataGrid" HorizontalAlignment="Left" Margin="10,27,0,0" VerticalAlignment="Top" Height="433" Width="772" AutoGenerateColumns="False" CanUserResizeColumns="False" ItemsSource="{Binding}" AlternatingRowBackground="LightSkyBlue" AlternationCount="2" ColumnWidth="*">
+        <DataGrid x:Name="ProductDataGrid" HorizontalAlignment="Left" Margin="10,27,0,0" VerticalAlignment="Top" Height="433" Width="772" AutoGenerateColumns="False" CanUserResizeColumns="False" ItemsSource="{Binding}" AlternatingRowBackground="LightGoldenrodYellow" AlternationCount="2" ColumnWidth="*">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="#" Binding="{Binding Id}" MaxWidth="50"/>
                 <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Cena" Binding="{Binding Price}"/>
                 <DataGridTextColumn Header="Kategoria" Binding="{Binding Category}"/>
-                <DataGridHyperlinkColumn Header="Akcje"/>
+                <DataGridTemplateColumn MaxWidth="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="details_Click" CommandParameter="{Binding ID}">Szczegóły</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 
