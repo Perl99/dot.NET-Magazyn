@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using System.Net;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Web;
@@ -9,7 +8,6 @@ using Authorization = GameStore.REST.Security.Authorization;
 namespace GameStore.WPF.Services
 {
 
-    [System.CodeDom.Compiler.GeneratedCode("System.ServiceModel", "4.0.0.0")]
     public class LoginServiceClient : ClientBase<ILoginService>, ILoginService
     {
 
@@ -38,16 +36,11 @@ namespace GameStore.WPF.Services
             int userId;
             using (new OperationContextScope(InnerChannel))
             {
-
                 userId = Channel.Login(json);
 
                 var context = WebOperationContext.Current;
                 Debug.Assert(context != null, "context != null");
                 var headers = context.IncomingResponse.Headers;
-                foreach (var h in headers)
-                {
-                    Debug.WriteLine(h.ToString());
-                }
 
                 Session s = Session.GetInstance;
                 s.userId = userId;
