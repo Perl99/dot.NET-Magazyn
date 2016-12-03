@@ -27,7 +27,13 @@ namespace GameStore.WPF.Windows
 
             try
             {
+                LoginFailedLabel.Visibility = Visibility.Hidden;
+
                 loginClient.Login(json);
+
+                var productList = new ProductList();
+                productList.Show();
+                Close();
             }
             catch (MessageSecurityException)
             {

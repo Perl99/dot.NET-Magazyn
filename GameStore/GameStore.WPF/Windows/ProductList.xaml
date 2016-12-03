@@ -1,0 +1,24 @@
+﻿<Window x:Class="GameStore.WPF.Windows.ProductList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Lista produktów" Height="500" Width="800">
+    <Grid>
+        <Menu x:Name="Menu" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="772" Margin="10,0,0,0">
+            <MenuItem Header="Produkty"/>
+            <MenuItem Header="Aukcje"/>
+        </Menu>
+        <DataGrid x:Name="ProductDataGrid" HorizontalAlignment="Left" Margin="10,27,0,0" VerticalAlignment="Top" Height="433" Width="772" AutoGenerateColumns="False" CanUserResizeColumns="False" ItemsSource="{Binding}" AlternatingRowBackground="LightSkyBlue" AlternationCount="2" ColumnWidth="*">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="#" Binding="{Binding Id}" MaxWidth="50"/>
+                <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Cena" Binding="{Binding Price}"/>
+                <DataGridTextColumn Header="Kategoria" Binding="{Binding Category}"/>
+                <DataGridHyperlinkColumn Header="Akcje"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Window>
