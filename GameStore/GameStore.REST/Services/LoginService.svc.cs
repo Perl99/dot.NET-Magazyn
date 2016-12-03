@@ -1,8 +1,9 @@
 ﻿using System.Diagnostics;
+using System.Net;
 using System.ServiceModel.Web;
 using GameStore.Domain.Abstract;
 using GameStore.REST.JSONs;
-using GameStore.REST.Security;
+using Authorization = GameStore.REST.Security.Authorization;
 
 namespace GameStore.REST.Services
 {
@@ -15,14 +16,19 @@ namespace GameStore.REST.Services
             this.userRepository = userRepository;
         }
 
-        public void Login(LoginJson json)
+        public int Login(LoginJson json)
         {
             var user = userRepository.FindByLoginAndPassword(json.Login, json.Password);
-            if (user != null)
+
+            if (user == null)
             {
-                Debug.Assert(WebOperationContext.Current != null, "WebOperationContext.Current != null");
-                WebOperationContext.Current.OutgoingResponse.Headers.Add(Authorization.AuthToken, Authorization.GenerateToken(json.Login, json.Password));
+                throw new WebFaultException(HttpStatusCode.Unauthorized);
             }
+
+            Debug.Assert(WebOperationContext.Current != null, "WebOperationContext.Current != null");
+            WebOperationContext.Current.OutgoingResponse.Headers.Add(Authorization.AuthToken, Authorization.GenerateToken(json.Login, json.Password));
+
+            return user.Id;
         }
 
         public void Register(UserJson json)

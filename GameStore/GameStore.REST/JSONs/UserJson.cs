@@ -10,7 +10,7 @@ namespace GameStore.REST.JSONs
         [DataMember(Name = "Id", IsRequired = true)]
         public int Id { get; set; }
 
-        [DataMember(Name = "Type", IsRequired = true)]
+        [DataMember(Name = "Typ", IsRequired = true)]
         public bool Type { get; set; }
 
         [DataMember(Name = "Imię", IsRequired = true)]
@@ -22,7 +22,7 @@ namespace GameStore.REST.JSONs
         [DataMember(Name = "Login", IsRequired = true)]
         public string Login { get; set; }
 
-        [DataMember(Name = "Password", IsRequired = true)]
+        [DataMember(Name = "Hasło", IsRequired = true)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
