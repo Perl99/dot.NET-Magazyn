@@ -8,209 +8,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using GameStore.REST.Services;
+
 namespace GameStore.WPF.LoginService {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="LoginJson", Namespace="http://schemas.datacontract.org/2004/07/GameStore.REST.JSONs")]
-    [System.SerializableAttribute()]
-    internal partial class LoginJson : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string LoginField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PasswordField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        internal string Login {
-            get {
-                return this.LoginField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.LoginField, value) != true)) {
-                    this.LoginField = value;
-                    this.RaisePropertyChanged("Login");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        internal string Password {
-            get {
-                return this.PasswordField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
-                    this.PasswordField = value;
-                    this.RaisePropertyChanged("Password");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="UserJson", Namespace="http://schemas.datacontract.org/2004/07/GameStore.REST.JSONs")]
-    [System.SerializableAttribute()]
-    internal partial class UserJson : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private string HasłoField;
-        
-        private int IdField;
-        
-        private string ImięField;
-        
-        private string LoginField;
-        
-        private string NazwiskoField;
-        
-        private bool TypField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        internal string Hasło {
-            get {
-                return this.HasłoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.HasłoField, value) != true)) {
-                    this.HasłoField = value;
-                    this.RaisePropertyChanged("Hasło");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        internal int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        internal string Imię {
-            get {
-                return this.ImięField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ImięField, value) != true)) {
-                    this.ImięField = value;
-                    this.RaisePropertyChanged("Imię");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        internal string Login {
-            get {
-                return this.LoginField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.LoginField, value) != true)) {
-                    this.LoginField = value;
-                    this.RaisePropertyChanged("Login");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        internal string Nazwisko {
-            get {
-                return this.NazwiskoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NazwiskoField, value) != true)) {
-                    this.NazwiskoField = value;
-                    this.RaisePropertyChanged("Nazwisko");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        internal bool Typ {
-            get {
-                return this.TypField;
-            }
-            set {
-                if ((this.TypField.Equals(value) != true)) {
-                    this.TypField = value;
-                    this.RaisePropertyChanged("Typ");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="LoginService.ILoginService")]
-    internal interface ILoginService {
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoginService/Login", ReplyAction="http://tempuri.org/ILoginService/LoginResponse")]
-        int Login(GameStore.WPF.LoginService.LoginJson json);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoginService/Register", ReplyAction="http://tempuri.org/ILoginService/RegisterResponse")]
-        void Register(GameStore.WPF.LoginService.UserJson json);
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    internal interface ILoginServiceChannel : GameStore.WPF.LoginService.ILoginService, System.ServiceModel.IClientChannel {
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    internal partial class LoginServiceClient : System.ServiceModel.ClientBase<GameStore.WPF.LoginService.ILoginService>, GameStore.WPF.LoginService.ILoginService {
+    [System.Diagnostics.DebuggerStepThrough()]
+    [System.CodeDom.Compiler.GeneratedCode("System.ServiceModel", "4.0.0.0")]
+    public partial class LoginServiceClient : System.ServiceModel.ClientBase<ILoginService>, ILoginService
+    {
         
         public LoginServiceClient() {
         }
@@ -231,12 +36,12 @@ namespace GameStore.WPF.LoginService {
                 base(binding, remoteAddress) {
         }
         
-        public int Login(GameStore.WPF.LoginService.LoginJson json) {
-            return base.Channel.Login(json);
+        public int Login(REST.JSONs.LoginJson json) {
+            return Channel.Login(json);
         }
         
-        public void Register(GameStore.WPF.LoginService.UserJson json) {
-            base.Channel.Register(json);
+        public void Register(REST.JSONs.UserJson json) {
+            Channel.Register(json);
         }
     }
 }

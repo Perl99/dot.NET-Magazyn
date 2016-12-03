@@ -1,19 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.ServiceModel.Web;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using GameStore.REST.JSONs;
 using GameStore.WPF.LoginService;
 
 namespace GameStore.WPF
@@ -30,7 +19,7 @@ namespace GameStore.WPF
 
         private void loginButton_Click(object sender, RoutedEventArgs e)
         {
-            LoginServiceClient loginClient = new LoginServiceClient();
+            LoginServiceClient loginClient = new LoginServiceClient("LoginEndpoint");
 
             LoginJson json = new LoginJson
             {
@@ -38,9 +27,10 @@ namespace GameStore.WPF
                 Password = PasswordBox.Password
             };
 
+            int userId = -1;
             try
             {
-                int userId = loginClient.Login(json);
+                userId = loginClient.Login(json);
             }
             catch (WebFaultException exception)
             {
@@ -49,6 +39,9 @@ namespace GameStore.WPF
                     LoginFailedLabel.Visibility = Visibility.Visible;
                 }
             }
+
+            // TODO
+            Console.Out.Write(userId);
         }
     }
 }

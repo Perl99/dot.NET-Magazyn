@@ -5,7 +5,7 @@
     <EnableDataBinding>true</EnableDataBinding>
     <ExcludedTypes />
     <ImportXmlTypes>false</ImportXmlTypes>
-    <GenerateInternalTypes>true</GenerateInternalTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
     <GenerateMessageContracts>false</GenerateMessageContracts>
     <NamespaceMappings />
     <CollectionMappings>
@@ -23,9 +23,10 @@
     <MetadataSource Address="http://localhost:54416/Services/LoginService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="LoginService.wsdl" MetadataType="Wsdl" ID="487b762f-6adc-46a6-a579-74b2f8942222" SourceId="1" SourceUrl="http://localhost:54416/Services/LoginService.svc?wsdl" />
     <MetadataFile FileName="LoginService.disco" MetadataType="Disco" ID="5d5905d4-0fff-4874-9482-74f6cfcc1ba4" SourceId="1" SourceUrl="http://localhost:54416/Services/LoginService.svc?disco" />
+    <MetadataFile FileName="LoginService1.wsdl" MetadataType="Wsdl" ID="79be50ef-0509-497f-b643-d9896e7e7353" SourceId="1" SourceUrl="http://localhost:54416/Services/LoginService.svc?wsdl=wsdl0" />
     <MetadataFile FileName="LoginService.xsd" MetadataType="Schema" ID="ac6258e6-6131-4c0c-86be-377e57a96491" SourceId="1" SourceUrl="http://localhost:54416/Services/LoginService.svc?xsd=xsd2" />
+    <MetadataFile FileName="LoginService.wsdl" MetadataType="Wsdl" ID="487b762f-6adc-46a6-a579-74b2f8942222" SourceId="1" SourceUrl="http://localhost:54416/Services/LoginService.svc?wsdl" />
     <MetadataFile FileName="LoginService1.xsd" MetadataType="Schema" ID="236a86f8-0b86-4d88-bf83-87419a3787ff" SourceId="1" SourceUrl="http://localhost:54416/Services/LoginService.svc?xsd=xsd0" />
     <MetadataFile FileName="LoginService2.xsd" MetadataType="Schema" ID="024ef3af-f106-4100-b9b3-a4e8ca24c131" SourceId="1" SourceUrl="http://localhost:54416/Services/LoginService.svc?xsd=xsd1" />
   </Metadata>
