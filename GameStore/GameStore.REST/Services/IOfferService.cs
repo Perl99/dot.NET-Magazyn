@@ -6,7 +6,7 @@ using GameStore.REST.JSONs;
 namespace GameStore.REST.Services
 {
     [ServiceContract]
-    interface IOfferService
+    public interface IOfferService
     {
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "get/{id}")]
