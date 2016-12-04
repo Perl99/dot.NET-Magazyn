@@ -19,7 +19,7 @@
                 <DataGridTemplateColumn MaxWidth="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Click="details_Click" CommandParameter="{Binding ID}">Szczegóły</Button>
+                            <Button Click="details_Click">Szczegóły</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

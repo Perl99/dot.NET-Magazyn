@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using GameStore.REST.JSONs;
 using GameStore.WPF.Services;
 
 namespace GameStore.WPF.Windows
@@ -21,8 +22,11 @@ namespace GameStore.WPF.Windows
 
         private void details_Click(object sender, RoutedEventArgs e)
         {
-            string id = (string) ((Button)sender).CommandParameter;
-            // Pokaż szczegóły i edycję
+            Button buttonSender = (Button) sender;
+            string id = ((ProductJson)buttonSender.DataContext).Id.ToString();
+            var productEdit = new ProductEdit(id);
+            productEdit.Show();
+            Close();
         }
     }
 }

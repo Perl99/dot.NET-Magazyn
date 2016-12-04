@@ -43,8 +43,8 @@ namespace GameStore.WPF.Services
                 var headers = context.IncomingResponse.Headers;
 
                 Session s = Session.GetInstance;
-                s.userId = userId;
-                s.token = headers.Get(Authorization.AuthToken);
+                s.UserId = userId;
+                s.Token = headers.Get(Authorization.AuthToken);
             }
 
             return userId;

@@ -7,9 +7,9 @@ namespace GameStore.WPF
     {
         private static Session _instance;
 
-        public int userId { get; set; }
+        public int UserId { get; set; }
 
-        public string token { get; set; }
+        public string Token { get; set; }
 
         private Session()
         {
@@ -19,8 +19,8 @@ namespace GameStore.WPF
 
         public void ApplyHeaders(WebHeaderCollection headers)
         {
-            headers.Add(Authorization.UserIdHeader, userId.ToString());
-            headers.Add(Authorization.AuthToken, token);
+            headers.Add(Authorization.UserIdHeader, UserId.ToString());
+            headers.Add(Authorization.AuthToken, Token);
         }
     }
 }
