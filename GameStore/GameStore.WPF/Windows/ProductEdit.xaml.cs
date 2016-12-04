@@ -44,5 +44,12 @@ namespace GameStore.WPF.Windows
                 ErrorLabel.Content = exception.Message;
             }
         }
+
+        private void auctionsMenu_Click(object sender, RoutedEventArgs e)
+        {
+            var auctionList = new AuctionList();
+            auctionList.Show();
+            Close();
+        }
     }
 }

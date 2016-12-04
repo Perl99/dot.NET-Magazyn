@@ -28,5 +28,12 @@ namespace GameStore.WPF.Windows
             productEdit.Show();
             Close();
         }
+
+        private void auctionsMenu_Click(object sender, RoutedEventArgs e)
+        {
+            var auctionList = new AuctionList();
+            auctionList.Show();
+            Close();
+        }
     }
 }

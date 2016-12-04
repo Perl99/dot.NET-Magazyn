@@ -8,7 +8,7 @@
     <Grid>
         <Menu x:Name="Menu" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="772" Margin="10,0,0,0">
             <MenuItem Header="Produkty" Click="cancelButton_Click"/>
-            <MenuItem Header="Aukcje"/>
+            <MenuItem Header="Aukcje" Click="auctionsMenu_Click"/>
         </Menu>
 
         <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Height="23" Margin="85,75,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Width="235"/>

@@ -68,12 +68,19 @@
     </ApplicationDefinition>
     <Compile Include="Services\AuctionService.cs" />
     <Compile Include="Services\OfferService.cs" />
+    <Compile Include="Windows\AuctionList.xaml.cs">
+      <DependentUpon>AuctionList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ProductEdit.xaml.cs">
       <DependentUpon>ProductEdit.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\ProductList.xaml.cs">
       <DependentUpon>ProductList.xaml</DependentUpon>
     </Compile>
+    <Page Include="Windows\AuctionList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\LoginWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

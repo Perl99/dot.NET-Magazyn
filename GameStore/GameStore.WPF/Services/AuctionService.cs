@@ -31,7 +31,7 @@ namespace GameStore.WPF.Services
         {
         }
 
-        List<AuctionJson> IAuctionService.List()
+        public List<AuctionJson> List()
         {
             List<AuctionJson> auctions;
             using (new OperationContextScope(InnerChannel))
@@ -58,7 +58,7 @@ namespace GameStore.WPF.Services
             }
         }
 
-        AuctionJson IAuctionService.Get(string id)
+        public AuctionJson Get(string id)
         {
             AuctionJson auction;
             using (new OperationContextScope(InnerChannel))
