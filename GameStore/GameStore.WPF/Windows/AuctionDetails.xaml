@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:helpers="clr-namespace:GameStore.WPF.Helpers"
         mc:Ignorable="d"
-        Title="Lista produktów" Height="500" Width="800">
+        Title="Szczegóły aukcji" Height="500" Width="800">
     <Grid>
         <Menu x:Name="Menu" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="772" Margin="10,0,0,0">
             <MenuItem Header="Produkty" Click="productsMenu_Click"/>
@@ -19,12 +19,12 @@
                 <DataGridTextColumn Header="Zaakceptowana" Binding="{Binding Accepted, Converter={helpers:YesNoConverter}}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Label x:Name="DescriptionLabel" Content="Opis:" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top" Width="85"/>
-        <TextBlock x:Name="DescriptionTextBlock" HorizontalAlignment="Left" Margin="235,39,0,0" TextWrapping="Wrap" Text="{Binding Description}" VerticalAlignment="Top" Height="76" Width="547"/>
-        <Label x:Name="OwnerLabel" Content="Właściciel:" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Width="85"/>
-        <Label x:Name="PriceLabel" Content="Cena:" HorizontalAlignment="Left" Margin="10,175,0,0" VerticalAlignment="Top" Width="85"/>
-        <Label x:Name="OwnerLabelData" Content="{Binding Owner}" HorizontalAlignment="Left" Margin="235,134,0,0" VerticalAlignment="Top" Width="547" Height="26"/>
-        <Label x:Name="PriceLabelData" Content="{Binding Price, StringFormat=C}" HorizontalAlignment="Left" Margin="235,175,0,0" VerticalAlignment="Top" Width="547" Height="26"/>
+        <Label x:Name="DescriptionLabel" Content="Opis:" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top" Width="110"/>
+        <TextBlock x:Name="DescriptionTextBlock" HorizontalAlignment="Left" Margin="235,44,0,0" TextWrapping="Wrap" Text="{Binding Description}" VerticalAlignment="Top" Height="76" Width="547"/>
+        <Label x:Name="OwnerLabel" Content="Właściciel:" HorizontalAlignment="Left" Margin="10,139,0,0" VerticalAlignment="Top" Width="110"/>
+        <Label x:Name="DateLabel" Content="Data utworzenia:" HorizontalAlignment="Left" Margin="10,180,0,0" VerticalAlignment="Top" Width="110"/>
+        <Label x:Name="OwnerLabelData" Content="{Binding Owner, Converter={helpers:OwnerConverter}}" HorizontalAlignment="Left" Margin="235,139,0,0" VerticalAlignment="Top" Width="547" Height="26"/>
+        <Label x:Name="DateLabelData" Content="{Binding CreationDate, StringFormat=C}" HorizontalAlignment="Left" Margin="235,180,0,0" VerticalAlignment="Top" Width="547" Height="26"/>
         <Label x:Name="OffersLabel" Content="Oferty:" HorizontalAlignment="Left" Margin="10,229,0,0" VerticalAlignment="Top" Width="85" FontWeight="Bold"/>
 
     </Grid>

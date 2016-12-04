@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:helpers="clr-namespace:GameStore.WPF.Helpers"
         mc:Ignorable="d"
-        Title="Lista produktów" Height="500" Width="800">
+        Title="Lista aukcji" Height="500" Width="800">
     <Grid>
         <Menu x:Name="Menu" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="772" Margin="10,0,0,0">
             <MenuItem Header="Produkty" Click="productsMenu_Click"/>
