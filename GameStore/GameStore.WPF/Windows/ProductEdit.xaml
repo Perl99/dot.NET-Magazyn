@@ -21,7 +21,7 @@
         <TextBox x:Name="CategoryTextBox" HorizontalAlignment="Left" Height="23" Margin="84,376,0,0" TextWrapping="Wrap" Text="{Binding Category}" VerticalAlignment="Top" Width="235"/>
         <Label x:Name="CategoryLabel" Content="Kategoria" HorizontalAlignment="Left" Margin="85,345,0,0" VerticalAlignment="Top" RenderTransformOrigin="3.89,-0.448"/>
         <Button x:Name="CancelButton" Content="Anuluj" HorizontalAlignment="Left" Margin="630,418,0,0" VerticalAlignment="Top" Width="120" Click="cancelButton_Click" FontWeight="Bold" Background="LightGray" Foreground="White"/>
-        <Label x:Name="ErrorLabel" Content="" HorizontalAlignment="Left" Margin="475,72,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.132,0" Width="275" Height="26"/>
+        <Label x:Name="ErrorLabel" Content="" HorizontalAlignment="Left" Margin="475,72,0,0" VerticalAlignment="Top" Width="275" Height="26"/>
 
     </Grid>
 </Window>

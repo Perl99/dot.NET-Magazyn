@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:helpers="clr-namespace:GameStore.WPF.Helpers"
         mc:Ignorable="d"
         Title="Lista produktów" Height="500" Width="800">
     <Grid>
@@ -13,7 +14,7 @@
         <DataGrid x:Name="AuctionDataGrid" HorizontalAlignment="Left" Margin="10,27,0,0" VerticalAlignment="Top" Height="433" Width="772" AutoGenerateColumns="False" CanUserResizeColumns="False" ItemsSource="{Binding}" AlternatingRowBackground="LightGoldenrodYellow" AlternationCount="2" ColumnWidth="*">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="#" Binding="{Binding Id}" MaxWidth="50"/>
-                <DataGridTextColumn Header="Właściciel" Binding="{Binding Owner}"/>
+                <DataGridTextColumn Header="Właściciel" Binding="{Binding Owner, Converter={helpers:OwnerConverter}}"/>
                 <DataGridTextColumn Header="Data utworzenia" Binding="{Binding CreationDate}"/>
                 <DataGridTemplateColumn MaxWidth="100">
                     <DataGridTemplateColumn.CellTemplate>

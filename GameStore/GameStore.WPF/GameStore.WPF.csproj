@@ -66,8 +66,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helpers\BaseConverter.cs" />
+    <Compile Include="Helpers\OwnerConverter.cs" />
+    <Compile Include="Helpers\YesNoConverter.cs" />
     <Compile Include="Services\AuctionService.cs" />
     <Compile Include="Services\OfferService.cs" />
+    <Compile Include="Windows\AuctionDetails.xaml.cs">
+      <DependentUpon>AuctionDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\AuctionList.xaml.cs">
       <DependentUpon>AuctionList.xaml</DependentUpon>
     </Compile>
@@ -77,6 +83,10 @@
     <Compile Include="Windows\ProductList.xaml.cs">
       <DependentUpon>ProductList.xaml</DependentUpon>
     </Compile>
+    <Page Include="Windows\AuctionDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\AuctionList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
