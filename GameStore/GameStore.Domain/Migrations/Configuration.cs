@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Web;
 using GameStore.Domain.Concrete;
@@ -39,8 +40,6 @@ namespace GameStore.Domain.Migrations
                 Type = false//UserType.Client
             };
 
-            context.Users.Add(user);
-
             var product = new Product
             {
                 Name = "Produkt 1",
@@ -50,8 +49,20 @@ namespace GameStore.Domain.Migrations
                 Price = Convert.ToDecimal(999.99)
             };
 
+            var auction = new Auction
+            {
+                CreationDate = DateTime.Now,
+                Description = "Aukcja produktu 1",
+                Owner = user,
+                Offers = new List<Offer>(),
+                Products = new List<Product> {product}
+            };
+
             context.Users.Add(user);
             context.Products.Add(product);
+            context.Auctions.Add(auction);
+
+            product.Auctions.Add(auction);
 
             base.Seed(context);
         }

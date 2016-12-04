@@ -5,6 +5,7 @@ using System.ServiceModel.Web;
 using GameStore.Domain.Abstract;
 using GameStore.Domain.Entities;
 using GameStore.REST.JSONs;
+using Authorization = GameStore.REST.Security.Authorization;
 
 namespace GameStore.REST.Services
 {
@@ -13,16 +14,23 @@ namespace GameStore.REST.Services
         private IOfferRepository offerRepository;
         private IAuctionRepository auctionRepository;
         private IUserRepository userRepository;
+        private Authorization authorization;
 
-        public OfferService(IOfferRepository offerRepository, IAuctionRepository auctionRepository, IUserRepository userRepository)
+        public OfferService(IOfferRepository offerRepository, IAuctionRepository auctionRepository, IUserRepository userRepository, Authorization authorization)
         {
             this.offerRepository = offerRepository;
             this.auctionRepository = auctionRepository;
             this.userRepository = userRepository;
+            this.authorization = authorization;
         }
 
         public OfferJson Get(string id)
         {
+            if (!authorization.IsAuthorized())
+            {
+                throw new WebFaultException(HttpStatusCode.Unauthorized);
+            }
+
             Offer offer = offerRepository.Find(int.Parse(id));
 
             if (offer == null)
@@ -33,20 +41,37 @@ namespace GameStore.REST.Services
             return new OfferJson(offer);
         }
 
-        public List<OfferJson> List(string auctionId) => auctionRepository.Find(int.Parse(auctionId)).Offers.Select(offer => new OfferJson(offer)).ToList();
+        public List<OfferJson> List(string auctionId)
+        {
+            if (!authorization.IsAuthorized())
+            {
+                throw new WebFaultException(HttpStatusCode.Unauthorized);
+            }
+
+            return auctionRepository.Find(int.Parse(auctionId)).Offers.Select(offer => new OfferJson(offer)).ToList();
+        }
 
         public void Save(string auctionId, OfferJson json)
         {
+            if (!authorization.IsAuthorized())
+            {
+                throw new WebFaultException(HttpStatusCode.Unauthorized);
+            }
             // TODO: walidacja
 
             Offer offer = json.ToOffer(auctionRepository);
-            offer.Owner = userRepository.Users.FirstOrDefault(); // TODO: faktyczny user z sesji
+            offer.Owner = userRepository.Find(authorization.UserId);
 
             offerRepository.Save(offer);
         }
 
         public void Accept(string auctionId, string id)
         {
+            if (!authorization.IsAuthorized())
+            {
+                throw new WebFaultException(HttpStatusCode.Unauthorized);
+            }
+
             Auction auction = auctionRepository.Find(int.Parse(auctionId));
 
             if (auction == null)

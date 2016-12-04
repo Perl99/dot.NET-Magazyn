@@ -13,16 +13,23 @@ namespace GameStore.REST.Services
     public class ProductService : IProductService
     {
         private IProductRepository productRepository;
+        private IUserRepository userRepository;
         private Authorization authorization;
 
-        public ProductService(IProductRepository productRepository, Authorization authorization)
+        public ProductService(IProductRepository productRepository, IUserRepository userRepository, Authorization authorization)
         {
             this.productRepository = productRepository;
+            this.userRepository = userRepository;
             this.authorization = authorization;
         }
 
         public ProductJson Get(string id)
         {
+            if (!authorization.IsAuthorized())
+            {
+                throw new WebFaultException(HttpStatusCode.Unauthorized);
+            }
+
             Product product = productRepository.Find(int.Parse(id));
 
             if (product == null)
@@ -44,10 +51,14 @@ namespace GameStore.REST.Services
 
         public void Save(ProductJson json)
         {
+            if (!authorization.IsAuthorized())
+            {
+                throw new WebFaultException(HttpStatusCode.Unauthorized);
+            }
             // TODO: walidacja
 
             Product product = json.ToProduct();
-            product.OwnerLogin = "TMP"; // TODO: faktyczny login z sesji użytkownika
+            product.OwnerLogin = userRepository.Find(authorization.UserId).Login;
 
             productRepository.Save(product);
         }

@@ -15,6 +15,8 @@ namespace GameStore.REST.Security
         public static string UserIdHeader = "X-UserId";
         public static string AuthToken = "X-AuthToken";
 
+        public int UserId { get; private set; }
+
         public Authorization(IUserRepository userRepository)
         {
             this.userRepository = userRepository;
@@ -23,14 +25,16 @@ namespace GameStore.REST.Security
         public bool IsAuthorized()
         {
             Debug.Assert(WebOperationContext.Current != null, "WebOperationContext.Current != null");
-            string userId = WebOperationContext.Current.OutgoingResponse.Headers.Get(UserIdHeader);
-            string token = WebOperationContext.Current.OutgoingResponse.Headers.Get(AuthToken);
+            string userId = WebOperationContext.Current.IncomingRequest.Headers.Get(UserIdHeader);
+            string token = WebOperationContext.Current.IncomingRequest.Headers.Get(AuthToken);
 
             if (userId == null || token == null) return false;
 
             User user = userRepository.Find(int.Parse(userId));
 
             if (user == null) return false;
+
+            UserId = int.Parse(userId);
 
             return GenerateToken(user.Login, user.Password) == token;
         }

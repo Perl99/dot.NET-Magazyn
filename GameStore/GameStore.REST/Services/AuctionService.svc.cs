@@ -6,6 +6,7 @@ using System.ServiceModel.Web;
 using GameStore.Domain.Abstract;
 using GameStore.Domain.Entities;
 using GameStore.REST.JSONs;
+using Authorization = GameStore.REST.Security.Authorization;
 
 namespace GameStore.REST.Services
 {
@@ -14,16 +15,23 @@ namespace GameStore.REST.Services
         private IAuctionRepository auctionRepository;
         private IUserRepository userRepository;
         private IProductRepository productRepository;
+        private Authorization authorization;
 
-        public AuctionService(IAuctionRepository auctionRepository, IUserRepository userRepository, IProductRepository productRepository)
+        public AuctionService(IAuctionRepository auctionRepository, IUserRepository userRepository, IProductRepository productRepository, Authorization authorization)
         {
             this.auctionRepository = auctionRepository;
             this.userRepository = userRepository;
             this.productRepository = productRepository;
+            this.authorization = authorization;
         }
 
         public AuctionJson Get(string id)
         {
+            if (!authorization.IsAuthorized())
+            {
+                throw new WebFaultException(HttpStatusCode.Unauthorized);
+            }
+
             Auction auction = auctionRepository.Find(int.Parse(id));
 
             if (auction == null)
@@ -34,14 +42,26 @@ namespace GameStore.REST.Services
             return new AuctionJson(auction);
         }
 
-        public List<AuctionJson> List() => auctionRepository.Auctions.Select(auction => new AuctionJson(auction)).ToList();
+        public List<AuctionJson> List()
+        {
+            if (!authorization.IsAuthorized())
+            {
+                throw new WebFaultException(HttpStatusCode.Unauthorized);
+            }
+
+            return auctionRepository.Auctions.Select(auction => new AuctionJson(auction)).ToList();
+        }
 
         public void Save(AuctionJson json)
         {
+            if (!authorization.IsAuthorized())
+            {
+                throw new WebFaultException(HttpStatusCode.Unauthorized);
+            }
             // TODO: walidacja
 
             Auction auction = json.ToAuction(auctionRepository, true, true);
-            auction.Owner = userRepository.Users.FirstOrDefault(); // TODO: faktyczny user z sesji
+            auction.Owner = userRepository.Find(authorization.UserId);
             auction.CreationDate = DateTime.Now;
 
             foreach (var productsIds in json.ProductsIds)
