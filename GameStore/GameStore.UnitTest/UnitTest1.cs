@@ -9,6 +9,9 @@ namespace GameStore.UnitTest
         [TestMethod]
         public void TestMethod1()
         {
+            string login = "admin";
+
+            Assert.AreEqual(login, "admin");
         }
     }
 }

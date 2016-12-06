@@ -50,7 +50,7 @@ namespace GameStore.WebUI.Controllers
         }
         public ActionResult Accept(int? id)
         {
-            Offer offer = repository.Find(id);
+            Offer offer = findById(id);
             offer.Accepted = true;
             repository.Save(offer);
             Auction auction = auctionRepository.Find(offer.Auction.Id);
@@ -60,6 +60,10 @@ namespace GameStore.WebUI.Controllers
             }
             auctionRepository.Save(auction);
             return RedirectToAction("Details", "Auction", new { id = auction.Id });
+        }
+        public Offer findById(int? id)
+        {
+            return repository.Find(id);
         }
     }
 }

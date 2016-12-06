@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using GameStore.Domain.Abstract;
 using GameStore.Domain.Entities;
+using System.Collections;
 
 namespace GameStore.WebUI.Controllers
 {
@@ -54,7 +55,7 @@ namespace GameStore.WebUI.Controllers
 
             Product product = repository.Find(id);
 
-            if (product == null)
+            if (checkIsNull(product))
             {
                 return HttpNotFound();
             }
@@ -74,6 +75,12 @@ namespace GameStore.WebUI.Controllers
                 return RedirectToAction("List");
             }
             return View("Edit", product);
+        }
+        public bool checkIsNull(Product product)
+        {
+            if (product == null)
+                return true;
+            return false;
         }
     }
 }
