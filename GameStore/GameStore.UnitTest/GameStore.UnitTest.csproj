@@ -101,6 +101,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="Controllers\LoginControllerTests.cs" />
+    <Compile Include="Controllers\OfferControllerTests.cs" />
     <Compile Include="Controllers\ProductControllerTests.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -117,6 +119,10 @@
     <ProjectReference Include="..\GameStore.WebUI\GameStore.WebUI.csproj">
       <Project>{2b2fcd5c-389d-44ff-b763-47924059cff3}</Project>
       <Name>GameStore.WebUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameStore.WPF\GameStore.WPF.csproj">
+      <Project>{9D66D954-DABD-464A-9E2B-6C30503F53C1}</Project>
+      <Name>GameStore.WPF</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
