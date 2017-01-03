@@ -61,3 +61,6 @@
 #*.PDF   diff=astextplain
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
+
+GameStore/GameStore.WebUI/scripts/* linguist-vendored
+GameStore/GameStore.WebUI/fonts/* linguist-vendored
